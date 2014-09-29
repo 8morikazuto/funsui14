@@ -1,4 +1,6 @@
 // utility
+var fs = require("fs");
+
 var gulp = require("gulp");
 var clean = require("gulp-clean");
 var gulpif = require("gulp-if");
@@ -19,7 +21,7 @@ var uglify = require("gulp-uglify");
 
 
 function releaseHTML(minify) {
-	var options = require("./develop/ejs/index.json");
+	var options = JSON.parse(fs.readFileSync("./develop/ejs/index.json", "utf8"));
 	gulp.src("develop/ejs/index.ejs")
 		.pipe(plumber())
 		.pipe(ejs(options))

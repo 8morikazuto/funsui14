@@ -1,24 +1,33 @@
+window.requestAnimationFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
+
 (function() {
 	"use strict";
 	var canvas = document.getElementById("wave");
 	var ctx = canvas.getContext("2d");
 	var cx = canvas.width, cy = canvas.height;
-	var ct = null;
-	ctx.fillStyle = "#45BEE6";
+	var ct = Date.now(), startFlag;
 
 	var text = document.getElementById("percent");
 
-	var pp = 0, waveTimer, textTimer;
-	var time50 = null;
-	var flag100 = null;
+	var pp = 0;
+	var time50, flag100;
+
+	ctx.fillStyle = "#45BEE6";
 
 	function getLoadPercent() {
 		var ret;
-		if(ct === null) {
+		if(!startFlag) {
 			ret = 0;
 		}else if(flag100) {
 			ret = 100;
-		} else if(time50 !== null) {
+		} else if(time50) {
 			ret = 50 + (Date.now() - time50) * 0.05;
 			ret = ret < 90 ? ret : 90;
 		} else {
@@ -29,7 +38,7 @@
 	}
 
 	function getLoadPercentLazy() {
-		var ret = pp + (getLoadPercent() - pp) * 0.05;
+		var ret = pp + (getLoadPercent() - pp) * 0.1;
 		pp = ret;
 		return ret;
 	}
@@ -37,22 +46,17 @@
 	function drawWave() {
 		var x = 0, y, t = Date.now();
 		var percent = getLoadPercentLazy();
-		var dx = 0.1, ny = (cy+15 - 125) * 0.01 * percent + 125;
-		if(ny > cy+14) {
-			clearInterval(waveTimer);
-			pp = 100;
-		}
+		var ny = (cy+25 - 250) * 0.01 * percent + 250;
 
 		ctx.clearRect(0, 0, cx, cy);
 		ctx.beginPath();
 
-		for(var i = 0; x < cx; ++i) {
-			x += dx;
-			y = ny - 12.0 * Math.sin(dx * i * 0.040 + (t - ct) * 0.004);
+		for(var i = 0; i < cx; ++i) {
+			y = ny - 18 * Math.sin(i * 0.020 + (t - ct) * 0.005) | 0;
 			if(i === 0)
-				ctx.moveTo(x, y);
+				ctx.moveTo(i, y);
 			else
-				ctx.lineTo(x, y);
+				ctx.lineTo(i, y);
 		}
 
 		ctx.lineTo(cx, cy);
@@ -60,23 +64,31 @@
 
 		ctx.closePath();
 		ctx.fill();
+
+		if(ny > cy+23) {
+			pp = 100;
+		} else {
+			requestAnimationFrame(drawWave);
+		}
+		
 	}
 
 	function drawText() {
-		text.innerText = ~~pp +"%";
+		text.textContent = ~~pp +"%";
 		if(pp === 100) {
-			clearInterval(textTimer);
 			setTimeout(function() {
-				text.innerText = "Enter!!";
+				text.textContent = "Enter!!";
 			}, 800);
+		} else {
+			requestAnimationFrame(drawText);
 		}
 	}
 
-	waveTimer = setInterval(drawWave, 10);
-	textTimer = setInterval(drawText, 10);
+	requestAnimationFrame(drawWave);
+	requestAnimationFrame(drawText);
 	
 	setTimeout(function(){
-		ct = Date.now();
+		startFlag = true;
 	}, 500);
 
 	window.addEventListener("DOMContentLoaded", function() {

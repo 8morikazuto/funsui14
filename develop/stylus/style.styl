@@ -1,28 +1,97 @@
-#load
+// init
+html, body
 	width 100%
 	height 100%
+	min-width 980px
+	min-height 550px
+	position relative
+
+
+// class
+.decoration
+	width 100%
+
+.decoration::before
+	content ""
+
+
+// function
+size(percent)
+	width 100%
+	height percent
+
+center(percent)
+	position absolute
+	top percent
+	left 50%
+	transform translate(-50%, -50%)
+
+
+// loading
+#load
+	transform scale(0.5)
+	size(100%)
 
 #loading
-	width 400px
-	height 460px
+	width 566px
+	height 890px
 	position absolute
-	top 50%
-	left 50%
-	transform translate(-50%, -50%) scale(0.5)
+	center(50%)
 
 #wave
 	position relative
 	z-index 100
 
 #percent
-	height 60px
+	height 90px
 	margin 0
 	color rgba(0, 0, 0, 0.8)
 	text-align center
-	line-height 60px
-	font-size 1.6em
+	line-height 90px
+	font-size 2.5em
 
 #hogee
 	position absolute
 	top 0
-	left 0
+	left 50%
+	transform translateX(-50%)
+
+// main
+main
+	size(100%)
+
+// header
+header
+	position relative
+	background gray
+	size(200%)
+
+#top
+	width 40%
+	color white
+	center(25%)
+	padding 3%
+	border-top solid 3px white
+	border-bottom solid 3px white
+	text-align center
+	font-size 250%
+
+#introduction
+	width 790px
+	font-size 1.4em
+	center(75%)
+
+h1
+	font-size 1em
+	font-weight normal
+
+// about
+#about
+	position relative
+	background black
+	size(100%)
+
+	div
+		color white
+		text-align center
+		center(50%)
