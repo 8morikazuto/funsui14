@@ -6,7 +6,7 @@ funsui14
 Webの勉強のために自由に活用してください。  
 ただしソースファイルを流用する場合は以下の記述を入れてください。
 
-`Copyright © 2014 九州大学噴水企画'14 | MIT Lisence | https://github.com/petamoriken/funsui14`
+`Copyright (c) 2014 九州大学噴水企画'14 | MIT Lisence | https://github.com/petamoriken/funsui14`
 
 なお、動画、画像の転用は禁止です。
 
