@@ -4,8 +4,10 @@ funsui14
 九州大学噴水企画'14
 
 Webの勉強のために自由に活用してください。  
-ただしソースファイルをコピペする場合は以下の記述を入れてください。  
-`Copyright 九州大学噴水企画'14 | MIT Lisence | https://github.com/petamoriken/funsui14`  
+ただしソースファイルを流用する場合は以下の記述を入れてください。
+
+`Copyright © 2014 九州大学噴水企画'14 | MIT Lisence | https://github.com/petamoriken/funsui14`
+
 なお、動画、画像の転用は禁止です。
 
 HTMLテンプレートエンジンとして[EJS]、CSSプリプロセッサとして[Stylus]、そしてタスクランナーとして[Gulp]を使用しています。  
