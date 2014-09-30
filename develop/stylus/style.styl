@@ -9,10 +9,34 @@ html, body
 
 // class
 .decoration
-	width 100%
+	width 50px
+	height 50px
+	margin 0 auto
+	background url(../embed/logo.png)
+	background-size 100%
+	position relative
 
-.decoration::before
+.decoration:before
 	content ""
+	width 220px
+	height 3px
+	position absolute
+	right 70px
+	top 50%
+	transform translateY(-50%)
+	display block
+	background white
+
+.decoration:after
+	content ""
+	width 220px
+	height 3px
+	position absolute
+	left 70px
+	top 50%
+	transform translateY(-50%)
+	display block
+	background white
 
 
 // function
@@ -56,9 +80,11 @@ center(percent)
 	left 50%
 	transform translateX(-50%)
 
+
 // main
 main
 	size(100%)
+
 
 // header
 header
@@ -74,7 +100,7 @@ header
 	border-top solid 3px white
 	border-bottom solid 3px white
 	text-align center
-	font-size 250%
+
 
 #introduction
 	width 790px
@@ -85,13 +111,18 @@ h1
 	font-size 1em
 	font-weight normal
 
+
 // about
 #about
 	position relative
 	background black
 	size(100%)
 
-	div
+	> div
+		width 530px
 		color white
 		text-align center
+		font-size 1.4em
+		padding-bottom 50px
+		border-bottom solid 3px white
 		center(50%)

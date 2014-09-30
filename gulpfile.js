@@ -10,14 +10,20 @@ var plumber = require("gulp-plumber");
 var ejs = require("gulp-ejs");
 var stylus = require("gulp-stylus");
 
-// fix
+// fix html
 var prettify = require("gulp-prettify");
+
+// fix css
 var prefix = require("gulp-autoprefixer");
+var base64 = require("gulp-css-base64");
 
 // minify
 var minifyHTML = require("gulp-minify-html");
 var minifyCSS = require("gulp-minify-css");
 var uglify = require("gulp-uglify");
+
+// gzip
+var gzip = require("gulp-gzip");
 
 
 function releaseHTML(minify) {
@@ -26,7 +32,9 @@ function releaseHTML(minify) {
 		.pipe(plumber())
 		.pipe(ejs(options))
 		.pipe(gulpif(minify, minifyHTML(), prettify()))
-		.pipe(gulp.dest("release"));
+		.pipe(gulp.dest("release"))
+		.pipe(gulpif(minify, gzip()))
+		.pipe(gulpif(minify, gulp.dest("release")));
 }
 
 function releaseCSS(minify) {
@@ -34,19 +42,36 @@ function releaseCSS(minify) {
 		.pipe(plumber())
 		.pipe(stylus())
 		.pipe(prefix())
+		.pipe(base64())
 		.pipe(gulpif(minify, minifyCSS()))
-		.pipe(gulp.dest("release/css"));
+		.pipe(gulp.dest("release/css"))
+		.pipe(gulpif(minify, gzip()))
+		.pipe(gulpif(minify, gulp.dest("release/css")));
 
 	gulp.src("develop/stylus/normalize.css")
 		.pipe(gulpif(minify, minifyCSS()))
-		.pipe(gulp.dest("release/css"));
+		.pipe(gulp.dest("release/css"))
+		.pipe(gulpif(minify, gzip()))
+		.pipe(gulpif(minify, gulp.dest("release/css")));
 }
 
 function releaseJS(minify) {
 	gulp.src("develop/js/*.js")
 		.pipe(plumber())
 		.pipe(gulpif(minify, uglify({preserveComments:"some"})))
-		.pipe(gulp.dest("release/js"));
+		.pipe(gulp.dest("release/js"))
+		.pipe(gulpif(minify, gzip()))
+		.pipe(gulpif(minify, gulp.dest("release/js")));
+}
+
+function copyImage() {
+	gulp.src("develop/img/**")
+		.pipe(gulp.dest("release/img"));
+}
+
+function copyHtaccess() {
+	gulp.src("develop/.htaccess")
+		.pipe(gulp.dest("release"));
 }
 
 
@@ -55,12 +80,15 @@ gulp.task("default", function() {
 	releaseHTML();
 	releaseCSS();
 	releaseJS();
+	copyImage();
 });
 
 gulp.task("release", function() {
 	releaseHTML(true);
 	releaseCSS(true);
 	releaseJS(true);
+	copyImage();
+	copyHtaccess();
 });
 
 gulp.task("clean", function() {
@@ -77,5 +105,8 @@ gulp.task("watch", function() {
 	});
 	gulp.watch("develop/js/*.js", function() {
 		releaseJS();
+	});
+	gulp.watch("develop/img/**", function() {
+		copyImage();
 	});
 });
