@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title><%= title %></title>
 	<% for(var i=0; i<style.length; ++i) { %>
-		<%- '<link rel="stylesheet" href="css/'+ style[i] +'.css"></link>' %>
+		<%- '<link rel="stylesheet" href="css/'+ style[i] +'.css">' %>
 	<% } %>
 </head>
 <body>
@@ -48,6 +48,30 @@
 				<% for(var i=1; i<about.length; ++i) { %>
 					<br><%= about[i] %>
 				<% } %>
+			</div>
+		</section>
+
+		<section id="information">
+			<div>
+				<div class="decoration"></div>
+				<h2>公演情報</h2>
+				<%= information[0] %>
+				<% for(var i=1; i<information.length; ++i) { %>
+					<br><%= information[i] %>
+				<% } %>
+			</div>
+		</section>
+
+		<section id="darkknight">
+			<div>
+				<img src="img/darkknight.png" alt="ダークナイトニッポン">
+				<% for(var i=0; i<darkknight.length; ++i) { %>
+					<br><%= darkknight[i] %>
+				<% } %>
+
+				<h2>最新回！<h2>
+				<div id="youtube">
+				</div>
 			</div>
 		</section>
 

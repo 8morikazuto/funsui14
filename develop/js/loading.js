@@ -68,6 +68,7 @@ window.requestAnimationFrame = (function(){
 		if(ny > cy+23) {
 			pp = 100;
 		} else {
+			console.log("hoge");
 			requestAnimationFrame(drawWave);
 		}
 		

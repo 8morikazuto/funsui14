@@ -76,6 +76,11 @@ function copyHtaccess() {
 		.pipe(gulp.dest("release"));
 }
 
+function copyPHP() {
+	gulp.src("develop/php/*.php")
+		.pipe(gulp.dest("release"));
+}
+
 
 // gulp setting
 gulp.task("default", function() {
@@ -83,6 +88,7 @@ gulp.task("default", function() {
 	releaseCSS();
 	releaseJS();
 	copyImage();
+	copyPHP();
 });
 
 gulp.task("release", function() {
@@ -91,6 +97,7 @@ gulp.task("release", function() {
 	releaseJS(true);
 	copyImage();
 	copyHtaccess();
+	copyPHP();
 });
 
 gulp.task("clean", function() {
@@ -110,5 +117,8 @@ gulp.task("watch", function() {
 	});
 	gulp.watch("develop/img/**", function() {
 		copyImage();
+	});
+	gulp.watch("develop/php/*.php", function() {
+		copyPHP();
 	});
 });
