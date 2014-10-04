@@ -23,8 +23,8 @@ var minifyHTML = require("gulp-minify-html");
 var minifyCSS = require("gulp-minify-css");
 var uglify = require("gulp-uglify");
 
-// gzip
-var gzip = require("gulp-gzip");
+// zopfli
+var zopfli = require("gulp-zopfli");
 
 
 function releaseHTML(minify) {
@@ -34,7 +34,7 @@ function releaseHTML(minify) {
 		.pipe(ejs(options))
 		.pipe(gulpif(minify, minifyHTML(), prettify()))
 		.pipe(gulp.dest("release"))
-		.pipe(gulpif(minify, gzip({ gzipOptions: { level: 9 } })))
+		.pipe(gulpif(minify, zopfli()))
 		.pipe(gulpif(minify, gulp.dest("release")));
 }
 
@@ -47,13 +47,13 @@ function releaseCSS(minify) {
 		.pipe(base64())
 		.pipe(gulpif(minify, minifyCSS()))
 		.pipe(gulp.dest("release/css"))
-		.pipe(gulpif(minify, gzip({ gzipOptions: { level: 9 } })))
+		.pipe(gulpif(minify, zopfli()))
 		.pipe(gulpif(minify, gulp.dest("release/css")));
 
 	gulp.src("develop/stylus/normalize.css")
 		.pipe(gulpif(minify, minifyCSS()))
 		.pipe(gulp.dest("release/css"))
-		.pipe(gulpif(minify, gzip({ gzipOptions: { level: 9 } })))
+		.pipe(gulpif(minify, zopfli()))
 		.pipe(gulpif(minify, gulp.dest("release/css")));
 }
 
@@ -62,7 +62,7 @@ function releaseJS(minify) {
 		.pipe(plumber())
 		.pipe(gulpif(minify, uglify({preserveComments:"some"})))
 		.pipe(gulp.dest("release/js"))
-		.pipe(gulpif(minify, gzip({ gzipOptions: { level: 9 } })))
+		.pipe(gulpif(minify, zopfli()))
 		.pipe(gulpif(minify, gulp.dest("release/js")));
 }
 
