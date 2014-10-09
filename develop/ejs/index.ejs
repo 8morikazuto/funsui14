@@ -3,6 +3,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title><%= title %></title>
+
+	<%- '<meta name="keywords" content="' %><%= keywords %><%- '">' %>
+	<%- '<meta name="description" content="' %><%= description %><%- '">' %>
+	<%- '<meta name="author" content="' %><%= author %><%- '">' %>
+
+	<%- '<meta property="og:title" content="' %><%= og.title %><%- '" />' %>
+	<%- '<meta property="og:type" content="' %><%= og.type %><%- '" />' %>
+	<%- '<meta property="og:url" content="' %><%= og.url %><%- '" />' %>
+	<%- '<meta property="og:image" content="' %><%= og.image %><%- '" />' %>
+	<%- '<meta property="og:description" content="' %><%= og.description %><%- '" />' %>
+	<%- '<meta property="og:site_name" content="' %><%= og.site_name %><%- '" />' %>
+	<%- '<meta property="fb:app_id" content="' %><%= og.app_id %><%- '" />' %>
+
+	<link rel="shortcut icon" href="favicon.ico" type="favicon.icon" />
+	<link rel="icon" href="favicon.ico" type="favicon.icon" />
+	<link rel="apple-touch-icon" href="webclip.png" />
+
 	<% for(var i=0; i<style.length; ++i) { %>
 		<%- '<link rel="stylesheet" href="css/'+ style[i] +'.css">' %>
 	<% } %>
@@ -72,6 +89,21 @@
 				<h2>最新回！<h2>
 				<div id="youtube">
 				</div>
+			</div>
+		</section>
+
+		<section id="poster">
+			<div>
+			</div>
+		</section>
+
+		<section id="special">
+			<div>
+			</div>
+		</section>
+
+		<section id="contact">
+			<div>
 			</div>
 		</section>
 

@@ -4,6 +4,20 @@
 	"script" : [ "fixedsticky", "main" ],
 	"header" : [ "WELCOME", "TO", "FUNSUIKIKAKU'S", "WEBSITE" ],
 
+	"keywords" : "'",
+	"description" : "",
+	"author" : "九州大学噴水企画'14",
+
+	"og" : {
+		"title" : "噴水企画'14 | 九州大学芸工祭",
+		"type" : "activity",
+		"url" : "http://www.design.kyushu-u.ac.jp/~festival/2014/funsui/",
+		"image" : "http://www.design.kyushu-u.ac.jp/~festival/2014/funsui/ogp.ong",
+		"description" : "",
+		"site_name" : "",
+		"app_id" : ""
+	},
+
 	"introduction" : [[
 		"九州大学芸術工学部で毎年11月に開催される学園祭、芸工祭。",
 		"学生たちが芸術工学部で学んだことを活かし創り上げる、",

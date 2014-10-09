@@ -81,6 +81,11 @@ function copyPHP() {
 		.pipe(gulp.dest("release"));
 }
 
+function copyUtilityImage() {
+	gulp.src(["develop/favicon.ico", "develop/webclip.png", "develop/ogp.png"])
+		.pipe(gulp.dest("release"));
+}
+
 
 // gulp setting
 gulp.task("default", function() {
@@ -89,6 +94,7 @@ gulp.task("default", function() {
 	releaseJS();
 	copyImage();
 	copyPHP();
+	copyUtilityImage();
 });
 
 gulp.task("release", function() {
@@ -98,6 +104,7 @@ gulp.task("release", function() {
 	copyImage();
 	copyHtaccess();
 	copyPHP();
+	copyUtilityImage();
 });
 
 gulp.task("clean", function() {
