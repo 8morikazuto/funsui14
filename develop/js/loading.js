@@ -3,7 +3,7 @@ window.requestAnimationFrame = (function(){
           window.webkitRequestAnimationFrame ||
           window.mozRequestAnimationFrame    ||
           function( callback ){
-            window.setTimeout(callback, 1000 / 60);
+            window.setTimeout(callback, 1000 / 30);
           };
 })();
 
@@ -20,6 +20,10 @@ window.requestAnimationFrame = (function(){
 	var time50, flag100;
 
 	ctx.fillStyle = "#45BEE6";
+
+	requestAnimationFrame(drawWave);
+	requestAnimationFrame(drawText);
+
 
 	function getLoadPercent() {
 		var ret;
@@ -85,8 +89,6 @@ window.requestAnimationFrame = (function(){
 		}
 	}
 
-	requestAnimationFrame(drawWave);
-	requestAnimationFrame(drawText);
 	
 	setTimeout(function(){
 		startFlag = true;

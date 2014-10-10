@@ -23,7 +23,12 @@ var minifyHTML = require("gulp-minify-html");
 var minifyCSS = require("gulp-minify-css");
 var uglify = require("gulp-uglify");
 
+// image minify
+var pngquant = require("imagemin-pngquant");
+var zopflipng = require("imagemin-zopfli");
+
 // zopfli
+// Tips: bin in gulp-zopfli is too old
 var zopfli = require("gulp-zopfli");
 
 
@@ -66,9 +71,19 @@ function releaseJS(minify) {
 		.pipe(gulpif(minify, gulp.dest("release/js")));
 }
 
-function copyImage() {
-	gulp.src("develop/img/**")
+function releaseImage(minify) {
+	gulp.src("develop/img/*.png")
+		.pipe(gulpif(minify, pngquant({speed:1})))
+//		.pipe(gulpif(minify, zopflipng()))
 		.pipe(gulp.dest("release/img"));
+
+	gulp.src("develop/favicon.ico")
+		.pipe(gulp.dest("release"));
+
+	gulp.src(["develop/webclip.png", "develop/ogp.png"])
+		.pipe(gulpif(minify, pngquant({speed:1})))
+//		.pipe(gulpif(minify, zopflipng()))
+		.pipe(gulp.dest("release"));
 }
 
 function copyHtaccess() {
@@ -81,30 +96,23 @@ function copyPHP() {
 		.pipe(gulp.dest("release"));
 }
 
-function copyUtilityImage() {
-	gulp.src(["develop/favicon.ico", "develop/webclip.png", "develop/ogp.png"])
-		.pipe(gulp.dest("release"));
-}
-
 
 // gulp setting
 gulp.task("default", function() {
 	releaseHTML();
 	releaseCSS();
 	releaseJS();
-	copyImage();
+	releaseImage();
 	copyPHP();
-	copyUtilityImage();
 });
 
 gulp.task("release", function() {
 	releaseHTML(true);
 	releaseCSS(true);
 	releaseJS(true);
-	copyImage();
+	releaseImage(true);
 	copyHtaccess();
 	copyPHP();
-	copyUtilityImage();
 });
 
 gulp.task("clean", function() {

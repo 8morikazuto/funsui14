@@ -8,10 +8,12 @@ function Funsui() {
 Funsui.prototype = {
 
 	init: function() {
+		"use strict";
 		this.$window = $(window);
 
 		$(function() {
-
+			// jquery.srcset
+			$("img").srcset();
 		});
 	}
 
