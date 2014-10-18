@@ -3,7 +3,7 @@ window.requestAnimationFrame = (function(){
           window.webkitRequestAnimationFrame ||
           window.mozRequestAnimationFrame    ||
           function( callback ){
-            window.setTimeout(callback, 1000 / 30);
+            window.setTimeout(callback, 1000 / 60);
           };
 })();
 
@@ -72,7 +72,6 @@ window.requestAnimationFrame = (function(){
 		if(ny > cy+23) {
 			pp = 100;
 		} else {
-			console.log("hoge");
 			requestAnimationFrame(drawWave);
 		}
 		

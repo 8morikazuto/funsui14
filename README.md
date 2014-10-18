@@ -4,7 +4,7 @@ funsui14
 [九州大学噴水企画'14]のWebサイトのソースです。Webの勉強のために自由に活用してください。  
 ただし流用する場合はコメントなどに以下の記述を入れてください。
 
-`Copyright (c) 2014 九州大学噴水企画'14 | MIT Lisence | https://github.com/petamoriken/funsui14`
+`Copyright (c) 2014 九州大学噴水企画'14 | MIT Lisence | http://git.io/JbFCbw`
 
 なお、動画、画像の転用は禁止です。
 

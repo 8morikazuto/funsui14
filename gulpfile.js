@@ -6,7 +6,7 @@ var clean = require("gulp-clean");
 var gulpif = require("gulp-if");
 var plumber = require("gulp-plumber");
 
-// template
+// template, preprocessor
 var ejs = require("gulp-ejs");
 var stylus = require("gulp-stylus");
 
@@ -23,13 +23,13 @@ var minifyHTML = require("gulp-minify-html");
 var minifyCSS = require("gulp-minify-css");
 var uglify = require("gulp-uglify");
 
+// zopfli
+// Tips: bin(zopflipng) in node-zopfli is too old
+var zopfli = require("gulp-zopfli");
+
 // image minify
 var pngquant = require("imagemin-pngquant");
 var zopflipng = require("imagemin-zopfli");
-
-// zopfli
-// Tips: bin in gulp-zopfli is too old
-var zopfli = require("gulp-zopfli");
 
 
 function releaseHTML(minify) {
@@ -74,7 +74,7 @@ function releaseJS(minify) {
 function releaseImage(minify) {
 	gulp.src("develop/img/*.png")
 		.pipe(gulpif(minify, pngquant({speed:1})))
-//		.pipe(gulpif(minify, zopflipng()))
+		.pipe(gulpif(minify, zopflipng()))
 		.pipe(gulp.dest("release/img"));
 
 	gulp.src("develop/favicon.ico")
@@ -82,7 +82,7 @@ function releaseImage(minify) {
 
 	gulp.src(["develop/webclip.png", "develop/ogp.png"])
 		.pipe(gulpif(minify, pngquant({speed:1})))
-//		.pipe(gulpif(minify, zopflipng()))
+		.pipe(gulpif(minify, zopflipng()))
 		.pipe(gulp.dest("release"));
 }
 
