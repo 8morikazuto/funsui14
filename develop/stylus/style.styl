@@ -2,9 +2,7 @@
 html, body
 	width 100%
 	height 100%
-	min-width 980px
-	min-height 735px
-	position relative
+	//position relative
 
 
 // class
@@ -53,25 +51,43 @@ center(percent)
 
 // loading
 #load
-	transform scale(0.5)
 	size(100%)
+	position absolute
+	top 0
+	z-index 100
+	background white
+	transition top 1s ease-in
+
+#load.open
+	top -100%
 
 #loading
 	width 566px
 	height 890px
 	position absolute
-	center(50%)
+	top 50%
+	left 50%
+	transform translate(-50%, -50%) scale(0.5)
 
 #wave
 	position relative
+	backface-visibility hidden
 	z-index 100
 
 #percent
 	height 90px
 	margin 0
-	color rgba(0, 0, 0, 0.8)
+	color #111
 	text-align center
 	line-height 90px
+	font-size 2.5em
+
+noscript
+	display block
+	position relative
+	top 700px
+	color #111
+	text-align center
 	font-size 2.5em
 
 #hogee
@@ -84,13 +100,32 @@ center(percent)
 // main
 main
 	size(100%)
+	min-width 980px
+	min-height 735px
+	position absolute
+	top 0
+	display none
+	overflow hidden
 
+#overlay
+	position fixed
+	top 0
+	left 0
+	width 100%
+	height 100%
+	background url("../embed/overlay.gif")
+	-webkit-transform translateZ(0)
 
 // header
 header
 	position relative
-	background gray
 	size(200%)
+
+	> video
+		position fixed
+		min-width 100%
+		min-height 100%
+		z-index -10
 
 #top
 	width 800px
@@ -98,12 +133,20 @@ header
 	center(25%)
 	border-top solid 5px white
 	border-bottom solid 5px white
+	z-index 50
+	opacity 0
+	transition opacity 1s ease
+
+#top.display
+	opacity 1
 
 
 #introduction
 	width 790px
 	font-size 1.4em
 	center(75%)
+	z-index 50
+	color white
 
 h1
 	font-size 1em
@@ -146,6 +189,7 @@ h1
 #darkknight
 	position relative
 	size(100%)
+	background white
 
 	> div
 		width 800px
@@ -184,14 +228,14 @@ h1
 		text-align center
 		center(50%)
 
-		> form
+		> #mail
 			div
 				width 12em
 				height 1.8em
 				margin 10px 0
 				background #45BEE6
 				border-radius 10px
-				line-height 1.8em
+				line-height 2em
 				color white
 
 			input[type="text"]
@@ -227,10 +271,13 @@ h1
 				border-radius 10px
 				line-height 2em
 				border-style none
+				transition background 0.2s ease-out
 
 			input[type="submit"]:focus
 				outline none
 
-			input[type="submit"].submitting
+		> #mail.cancel
+			input[type="submit"]
 				background #828282
+				cursor default
 

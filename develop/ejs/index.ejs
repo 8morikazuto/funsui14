@@ -8,13 +8,13 @@
 	<%- '<meta name="description" content="' %><%= description %><%- '">' %>
 	<%- '<meta name="author" content="' %><%= author %><%- '">' %>
 
-	<%- '<meta property="og:title" content="' %><%= og.title %><%- '" />' %>
-	<%- '<meta property="og:type" content="' %><%= og.type %><%- '" />' %>
-	<%- '<meta property="og:url" content="' %><%= og.url %><%- '" />' %>
-	<%- '<meta property="og:image" content="' %><%= og.image %><%- '" />' %>
-	<%- '<meta property="og:description" content="' %><%= og.description %><%- '" />' %>
-	<%- '<meta property="og:site_name" content="' %><%= og.site_name %><%- '" />' %>
-	<%- '<meta property="fb:app_id" content="' %><%= og.app_id %><%- '" />' %>
+	<%- '<meta property="og:title" content="' %><%= og.title %><%- '">' %>
+	<%- '<meta property="og:type" content="' %><%= og.type %><%- '">' %>
+	<%- '<meta property="og:url" content="' %><%= og.url %><%- '">' %>
+	<%- '<meta property="og:image" content="' %><%= og.image %><%- '">' %>
+	<%- '<meta property="og:description" content="' %><%= og.description %><%- '">' %>
+	<%- '<meta property="og:site_name" content="' %><%= og.site_name %><%- '">' %>
+	<%- '<meta property="fb:app_id" content="' %><%= og.app_id %><%- '">' %>
 
 	<link rel="shortcut icon" href="favicon.ico" type="favicon.icon" />
 	<link rel="icon" href="favicon.ico" type="favicon.icon" />
@@ -30,11 +30,13 @@
 			<canvas id="wave" width="566" height="800"></canvas>
 			<%- '<img id="hogee" width="400" height="800" src="' +hogee +'" alt="ほげぇ">' %>
 
-
 			<div id="percent"></div>
+			<noscript>このWebサイトはJavaScriptを有効にして御覧ください。</noscript>
 			<script src="js/loading.js"></script>
 		</div>
 	</div>
+
+	<div id="overlay"></div>
 
 	<main>
 		<header>
@@ -52,6 +54,10 @@
 					<% } %>
 				<% } %>
 			</div>
+			<video>
+				<source src="video/funsui.webm" type="video/webm">
+				<source src="video/funsui.mp4" type="video/mp4">
+			</video>
 		</header>
 
 		<section id="about">
@@ -91,7 +97,8 @@
 
 		<section id="poster">
 			<div>
-				<% for(var i=0; i<poster.length; ++i) { %>
+				<%= poster[0] %>
+				<% for(var i=1; i<poster.length; ++i) { %>
 					<br><%= poster[i] %>
 				<% } %>
 			</div>
@@ -99,7 +106,8 @@
 
 		<section id="special">
 			<div>
-				<% for(var i=0; i<special.length; ++i) { %>
+				<%= special[0] %>
+				<% for(var i=1; i<special.length; ++i) { %>
 					<br><%= special[i] %>
 				<% } %>
 			</div>
@@ -107,11 +115,12 @@
 
 		<section id="contact">
 			<div>
-				<% for(var i=0; i<contact.length; ++i) { %>
+				<%= contact[0] %>
+				<% for(var i=1; i<contact.length; ++i) { %>
 					<br><%= contact[i] %>
 				<% } %>
 
-				<form id="mail" onsubmit="return false;">
+				<form id="mail" class="cancel">
 
 					<label>
 						<div>名前<small>（ペンネームも可）</small></div>
@@ -123,7 +132,7 @@
 						<textarea name="content"></textarea>
 					</label>
 
-					<input type="submit">
+					<input type="submit" value="送信">
 				</form>
 
 			</div>

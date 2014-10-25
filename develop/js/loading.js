@@ -1,14 +1,8 @@
-window.requestAnimationFrame = (function(){
-  return  window.requestAnimationFrame       ||
-          window.webkitRequestAnimationFrame ||
-          window.mozRequestAnimationFrame    ||
-          function( callback ){
-            window.setTimeout(callback, 1000 / 60);
-          };
-})();
-
-(function() {
+(function(window) {
 	"use strict";
+
+	window.funsui = {};
+
 	var canvas = document.getElementById("wave");
 	var ctx = canvas.getContext("2d");
 	var cx = canvas.width, cy = canvas.height;
@@ -17,26 +11,50 @@ window.requestAnimationFrame = (function(){
 	var text = document.getElementById("percent");
 
 	var pp = 0;
-	var time50, flag100;
+	var time33, time66;
+
+	var requestAnimationFrame = (function() {
+		return  window.requestAnimationFrame       ||
+				window.webkitRequestAnimationFrame ||
+				window.mozRequestAnimationFrame    ||
+				function(callback){
+					window.setTimeout(callback, 1000 / 60);
+				};
+	})();
 
 	ctx.fillStyle = "#45BEE6";
 
 	requestAnimationFrame(drawWave);
 	requestAnimationFrame(drawText);
 
+	setTimeout(function(){
+		startFlag = true;
+	}, 500);
+
+	window.addEventListener("DOMContentLoaded", function() {
+		time33 = Date.now();
+	}, false);
+
+	window.addEventListener("load", function() {
+		time66 = Date.now();
+	}, false);
+
 
 	function getLoadPercent() {
 		var ret;
 		if(!startFlag) {
 			ret = 0;
-		}else if(flag100) {
+		} else if(funsui.loaded) {
 			ret = 100;
-		} else if(time50) {
-			ret = 50 + (Date.now() - time50) * 0.05;
+		} else if(time66) {
+			ret = 66 + (Date.now() - time66) * 0.05;
 			ret = ret < 90 ? ret : 90;
+		} else if(time33) {
+			ret = 33 + (Date.now() - time33) * 0.05;
+			ret = ret < 66 ? ret : 66;
 		} else {
 			ret = (Date.now() - ct) * 0.05;
-			ret = ret < 50 ? ret : 50;
+			ret = ret < 33 ? ret : 33;
 		}
 		return ret;
 	}
@@ -70,7 +88,11 @@ window.requestAnimationFrame = (function(){
 		ctx.fill();
 
 		if(ny > cy+23) {
+			// load end
 			pp = 100;
+			setTimeout(function() {
+				funsui.openLoading();
+			}, 1000);
 		} else {
 			requestAnimationFrame(drawWave);
 		}
@@ -82,23 +104,10 @@ window.requestAnimationFrame = (function(){
 		if(pp === 100) {
 			setTimeout(function() {
 				text.textContent = "Enter!!";
-			}, 800);
+			}, 400);
 		} else {
 			requestAnimationFrame(drawText);
 		}
 	}
 
-	
-	setTimeout(function(){
-		startFlag = true;
-	}, 500);
-
-	window.addEventListener("DOMContentLoaded", function() {
-		time50 = Date.now();
-	}, false);
-
-	window.addEventListener("load", function() {
-		flag100 = true;
-	}, false);
-
-})();
+})(this);
