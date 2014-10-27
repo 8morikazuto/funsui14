@@ -36,6 +36,7 @@ var zopflipng = require("imagemin-zopfli");
 
 function releaseHTML(minify) {
 	var options = JSON.parse(fs.readFileSync("./develop/ejs/index.json", "utf8"));
+	
 	gulp.src("develop/ejs/index.ejs")
 		.pipe(plumber())
 		.pipe(ejs(options))
@@ -75,19 +76,22 @@ function releaseJS(minify) {
 
 function releaseImage(minify) {
 	gulp.src("develop/img/*.png")
-		.pipe(gulpif(minify, pngquant({speed:1})()))
-		.pipe(gulpif(minify, zopflipng({more:true})()))
+		.pipe(gulpif(minify, pngquant({speed: 1})()))
+		.pipe(gulpif(minify, zopflipng({more: true})()))
 		.pipe(gulp.dest("release/img"));
 
-	gulp.src("develop/img/*.gif")
+	gulp.src("develop/img/*.jpg")
+		.pipe(gulpif(minify, jpegoptim({max: 90})()))
+		.pipe(gulpif(minify, mozjpeg()()))
 		.pipe(gulp.dest("release/img"));
+
 
 	gulp.src("develop/favicon.ico")
 		.pipe(gulp.dest("release"));
 
 	gulp.src(["develop/webclip.png", "develop/ogp.png"])
-		.pipe(gulpif(minify, pngquant({speed:1})()))
-		.pipe(gulpif(minify, zopflipng({more:true})()))
+		.pipe(gulpif(minify, pngquant({speed: 1})()))
+		.pipe(gulpif(minify, zopflipng({more: true})()))
 		.pipe(gulp.dest("release"));
 }
 
@@ -146,6 +150,9 @@ gulp.task("watch", function() {
 	gulp.watch("develop/img/**", function() {
 		releaseImage();
 	});
+	gulp.watch("develop/video/**", function() {
+		copyVideo();
+	});
 	gulp.watch("develop/php/*.php", function() {
 		copyPHP();
 	});
@@ -160,7 +167,7 @@ gulp.task("jpeg", function() {
 
 gulp.task("png", function() {
 	gulp.src("image/png/**")
-		.pipe(pngquant({speed:1})())
-		.pipe(zopflipng({more:true})())
+		.pipe(pngquant({speed : 1})())
+		.pipe(zopflipng({more : true})())
 		.pipe(gulp.dest("image/minpng"));
 });

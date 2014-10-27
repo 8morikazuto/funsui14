@@ -8,13 +8,17 @@
 	<%- '<meta name="description" content="' %><%= description %><%- '">' %>
 	<%- '<meta name="author" content="' %><%= author %><%- '">' %>
 
-	<%- '<meta property="og:title" content="' %><%= og.title %><%- '">' %>
-	<%- '<meta property="og:type" content="' %><%= og.type %><%- '">' %>
-	<%- '<meta property="og:url" content="' %><%= og.url %><%- '">' %>
-	<%- '<meta property="og:image" content="' %><%= og.image %><%- '">' %>
-	<%- '<meta property="og:description" content="' %><%= og.description %><%- '">' %>
-	<%- '<meta property="og:site_name" content="' %><%= og.site_name %><%- '">' %>
-	<%- '<meta property="fb:app_id" content="' %><%= og.app_id %><%- '">' %>
+	<%- '<meta property="og:title" content="' %><%= ogp.title %><%- '">' %>
+	<%- '<meta property="og:type" content="' %><%= ogp.type %><%- '">' %>
+	<%- '<meta property="og:url" content="' %><%= ogp.url %><%- '">' %>
+	<%- '<meta property="og:image" content="' %><%= ogp.image %><%- '">' %>
+	<%- '<meta property="og:description" content="' %><%= ogp.description %><%- '">' %>
+	<%- '<meta property="og:site_name" content="' %><%= ogp.site_name %><%- '">' %>
+	<%- '<meta property="fb:app_id" content="' %><%= ogp.app_id %><%- '">' %>
+	<%- '<meta property="twitter:site" content="' %><%= ogp.twitter %><%- '">' %>
+	<%- '<meta property="twitter:card" content="' %><%= ogp.card %><%- '">' %>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="shortcut icon" href="favicon.ico" type="favicon.icon" />
 	<link rel="icon" href="favicon.ico" type="favicon.icon" />
@@ -23,6 +27,15 @@
 	<% for(var i=0; i<style.length; ++i) { %>
 		<%- '<link rel="stylesheet" href="css/'+ style[i] +'.css">' %>
 	<% } %>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-36723060-5', 'auto');
+	ga('send', 'pageview');
+</script>
 </head>
 <body>
 	<div id="load">
@@ -36,10 +49,8 @@
 		</div>
 	</div>
 
-	<div id="overlay"></div>
-
 	<main>
-		<header>
+		<header class="fixbf">
 			<div id="top">
 				<h1>
 					<img src="img/welcome.png" width="800" height="408" alt="WELCOME TO FUNSUIKIKAKU&#39;S WEBSITE">
@@ -60,7 +71,7 @@
 			</video>
 		</header>
 
-		<section id="about">
+		<section id="about" class="fixbf">
 			<div>
 				<div class="decoration"></div>
 				<h2>噴水企画ってなに？</h2>
@@ -68,6 +79,11 @@
 				<% for(var i=1; i<about.length; ++i) { %>
 					<br><%= about[i] %>
 				<% } %>
+			</div>
+		</section>
+
+		<section id="variety" class="fixbf">
+			<div>
 			</div>
 		</section>
 
@@ -134,7 +150,7 @@
 
 					<input type="submit" value="送信">
 				</form>
-
+				
 			</div>
 		</section>
 

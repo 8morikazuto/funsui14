@@ -2,7 +2,6 @@
 html, body
 	width 100%
 	height 100%
-	//position relative
 
 
 // class
@@ -61,6 +60,9 @@ center(percent)
 #load.open
 	top -100%
 
+#load.end
+	display none
+
 #loading
 	width 566px
 	height 890px
@@ -102,23 +104,16 @@ main
 	size(100%)
 	min-width 980px
 	min-height 735px
-	position absolute
-	top 0
-	display none
-	overflow hidden
-
-#overlay
 	position fixed
-	top 0
-	left 0
-	width 100%
-	height 100%
-	background url("../embed/overlay.gif")
-	-webkit-transform translateZ(0)
+
+main.open
+	position absolute
+
 
 // header
 header
 	position relative
+	background url("../embed/overlay.gif") fixed
 	size(200%)
 
 	> video
@@ -134,10 +129,12 @@ header
 	border-top solid 5px white
 	border-bottom solid 5px white
 	z-index 50
+	visiblity hidden
 	opacity 0
-	transition opacity 1s ease
+	transition visibility 1s ease,opacity 1s ease
 
 #top.display
+	visiblity visible
 	opacity 1
 
 
@@ -156,7 +153,8 @@ h1
 // about
 #about
 	position relative
-	background black
+	background url("../img/background001.jpg") black fixed
+	background-size cover
 	size(100%)
 
 	> div
@@ -169,11 +167,18 @@ h1
 		center(50%)
 
 
+#variety
+	position relative
+	background url("../img/background004.jpg") black fixed
+	background-size cover
+	size(100%)
+
 // information
 #information
 	position relative
 	background black
-	size(150%)
+	background radial-gradient(350px, #333, black)
+	size(100%)
 
 	> div
 		width 530px
@@ -242,7 +247,7 @@ h1
 				width 700px
 				height 2em
 				box-sizing border-box
-				padding 10px
+				padding 0 10px
 				margin-bottom 15px
 				border 2px dashed #45BEE6
 				border-radius 10px
