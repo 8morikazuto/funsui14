@@ -18,7 +18,7 @@
 	<%- '<meta property="twitter:site" content="' %><%= ogp.twitter %><%- '">' %>
 	<%- '<meta property="twitter:card" content="' %><%= ogp.card %><%- '">' %>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimal-ui">
 
 	<link rel="shortcut icon" href="favicon.ico" type="favicon.icon" />
 	<link rel="icon" href="favicon.ico" type="favicon.icon" />
@@ -53,7 +53,7 @@
 		<header class="fixbf">
 			<div id="top">
 				<h1>
-					<img src="img/welcome.png" width="800" height="408" alt="WELCOME TO FUNSUIKIKAKU&#39;S WEBSITE">
+					<img src="img/welcome.png" alt="WELCOME TO FUNSUIKIKAKU&#39;S WEBSITE">
 				</h1>
 			</div>
 			<div id="introduction">
@@ -69,6 +69,7 @@
 				<source src="video/funsui.webm" type="video/webm">
 				<source src="video/funsui.mp4" type="video/mp4">
 			</video>
+			<canvas id="vcanvas"></canvas>
 		</header>
 
 		<section id="about" class="fixbf">
@@ -100,7 +101,7 @@
 
 		<section id="darkknight">
 			<div>
-				<img src="img/darkknight.png" srcset="img/darknight@2x.png 2x" width="800" height="288" alt="ダークナイトニッポン">
+				<img src="img/darkknight.png" srcset="img/darkknight@2x.png 2x" alt="ダークナイトニッポン">
 				<% for(var i=0; i<darkknight.length; ++i) { %>
 					<br><%= darkknight[i] %>
 				<% } %>
