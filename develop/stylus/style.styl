@@ -111,6 +111,13 @@ main.open
 	position absolute
 
 
+// hide background
+#hide
+	position absolute
+	top -100%
+	background black fixed
+	size(100%)
+
 // header
 header
 	position relative
@@ -123,13 +130,14 @@ header
 		left 50%
 		min-width 100%
 		min-height 100%
-		transform translate(-50%, -50%)
+		transform translate3d(-50%, -50%, 0)
 		z-index -10
 	
 	> #vcanvas
 		position fixed
 		top 0
 		z-index -10
+		-webkit-transform translateZ(0)
 
 #top
 	width 800px
@@ -166,8 +174,8 @@ h1
 #about
 	position relative
 	background url("../img/background001.jpg") black fixed
+	background-position center
 	background-size cover
-	background-posiiton center
 	size(100%)
 
 	> div
@@ -183,8 +191,8 @@ h1
 #variety
 	position relative
 	background url("../img/background004.jpg") black fixed
+	background-position center
 	background-size cover
-	background-posiiton center
 	size(100%)
 
 // information

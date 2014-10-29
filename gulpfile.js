@@ -50,8 +50,16 @@ function releaseCSS(minify) {
 	gulp.src("develop/stylus/*.styl")
 		.pipe(plumber())
 		.pipe(stylus())
-		.pipe(prefix())
-		.pipe(csscomb())
+		.pipe(prefix([
+			'Android 2.3',
+			'Android >= 4',
+			'Chrome >= 20',
+			'Firefox >= 24', // Firefox 24 is the latest ESR
+			'Explorer >= 9',
+			'iOS >= 6',
+			'Opera >= 12',
+			'Safari >= 6'
+		])).pipe(csscomb())
 		.pipe(base64())
 		.pipe(gulpif(minify, minifyCSS()))
 		.pipe(gulp.dest("release/css"))
@@ -158,6 +166,7 @@ gulp.task("watch", function() {
 	});
 });
 
+/*
 gulp.task("jpeg", function() {
 	gulp.src("image/jpeg/**")
 		.pipe(jpegoptim({max : 70})())
@@ -171,3 +180,4 @@ gulp.task("png", function() {
 		.pipe(zopflipng({more : true})())
 		.pipe(gulp.dest("image/minpng"));
 });
+*/

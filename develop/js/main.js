@@ -163,13 +163,25 @@
 	Funsui.prototype.setBlur = function() {
 		var _this = this;
 
+		var timer = null;
 		this.$window.on("scroll", function() {
-			var scrollTop = _this.$window.scrollTop();
-			var height = _this.$window.height();
-			var val = scrollTop / 120;
-			if(scrollTop <= height) {
-				_this.$video.css("-webkit-filter", "blur(" + val + "px)");
-				_this.$video.css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(PixelRadius=" + val + ")");
+			if(timer === null) {
+				timer = setTimeout(function() {
+					var scrollTop = _this.$window.scrollTop();
+					var height = _this.$window.height();
+					var val = scrollTop / 120;
+					if(scrollTop <= height) {
+						if(_this.isMobile) {
+							_this.$vcanvas.css("filter", "blur(" + val + "px)");
+							_this.$vcanvas.css("-webkit-filter", "blur(" + val + "px)");
+						} else {
+							_this.$video.css("filter", "blur(" + val + "px)");
+							_this.$video.css("-webkit-filter", "blur(" + val + "px)");
+							_this.$video.css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(PixelRadius=" + val + ")");
+						}
+					}
+					timer = null;
+				}, 100);
 			}
 		});
 
@@ -194,12 +206,12 @@
 	Funsui.prototype.fixBackgroundFixed = function() {
 		var _this = this;
 
-		// http://stackoverflow.com/questions/2637058/positions-fixed-doesnt-work-when-using-webkit-transform
 		if(this.isChrome || this.isMobile) {
 
 			var $fixbf = $(".fixbf");
 			$fixbf.css('background-attachment', 'scroll');
 
+			// http://stackoverflow.com/questions/2637058/positions-fixed-doesnt-work-when-using-webkit-transform
 			if(this.isChrome) {
 				this.$window.on("scroll", function(e) {
 
@@ -264,7 +276,8 @@
 		
 		$.post("sendMail", data).done(function() {
 			
-		}).success(function() {
+		}).success(function(val) {
+			console.log(val);
 			swal("Success!", "メールを送信しました。", "success");
 		}).error(function() {
 			swal("Oops...", "メールの送信に失敗しました。", "error");
