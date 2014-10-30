@@ -1,4 +1,5 @@
 /*! jquery-srcset-retina-polyfill | http://git.io/AuUFFw */
+
 (function($,window) {
 	// returns an array of objects of the form {url: 'image_url', ratio: float }
 	//   array is sorted in asending order by the pixel ratio

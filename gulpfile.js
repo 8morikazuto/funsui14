@@ -132,8 +132,8 @@ function releaseJS(release) {
 
 	gulp.src(src)
 		.pipe(plumber())
-		.pipe(gulpif(release, concat("build.js")))
 		.pipe(gulpif(release, uglify({preserveComments:"some"})))
+		.pipe(gulpif(release, concat("build.js")))
 		.pipe(gulp.dest("release/js"))
 		.pipe(gulpif(release, zopfli()))
 		.pipe(gulpif(release, gulp.dest("release/js")));

@@ -1,3 +1,4 @@
+/*! Copyright (c) 2014 九州大学噴水企画'14 | MIT Lisence | http://git.io/JbFCbw */
 (function(window, $) {
 	"use strict";
 

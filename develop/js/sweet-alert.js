@@ -1,4 +1,5 @@
 /*! SweetAlert 2014 (c) - Tristan Edwards http://git.io/UYtREw */
+
 (function(window, document) {
 
   var modalClass   = '.sweet-alert',
