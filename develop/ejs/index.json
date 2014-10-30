@@ -1,7 +1,7 @@
 {
 	"title" : "噴水企画'14 | 九州大学芸工祭",
-	"style" : [ "normalize", "sweet-alert", "style" ,"smart"],
-	"script" : [ "jquery.midnight", "jquery.glide", "jquery.srcset", "sweet-alert", "aisplitter", "main" ],
+	"style" : [ "normalize.css", "sweet-alert.css", "style.css" ,"smart.css"],
+	"script" : [ "modernizr.js", "jquery.glide.js", "jquery.srcset.js", "sweet-alert.js", "aisplitter.js", "main.js" ],
 
 	"keywords" : "噴水企画,三研,3研,九州大学,大橋キャンパス,芸工,芸工祭",
 	"description" : "噴水企画、通称三研のWebサイト。噴水企画とは九州大学芸術工学部で開催される芸工祭にて、大橋キャンパスの噴水の回りにステージを作り、劇、映像、音楽などを用いて芸工祭を笑いと感動で彩る前衛的なエンターテイメント集団のことです。",

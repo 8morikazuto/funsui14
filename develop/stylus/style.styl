@@ -42,10 +42,10 @@ size(percent)
 	width 100%
 	height percent
 
-center(percent)
+center(percentTop, parcentLeft = 50%)
 	position absolute
-	top percent
-	left 50%
+	top percentTop
+	left parcentLeft
 	transform translate(-50%, -50%)
 
 
@@ -111,13 +111,6 @@ main.open
 	position absolute
 
 
-// hide background
-#hide
-	position absolute
-	top -100%
-	background black fixed
-	size(100%)
-
 // header
 header
 	position relative
@@ -133,11 +126,12 @@ header
 		transform translate3d(-50%, -50%, 0)
 		z-index -10
 	
-	> #vcanvas
-		position fixed
-		top 0
-		z-index -10
-		-webkit-transform translateZ(0)
+#vcanvas
+	position fixed
+	top 0
+	z-index -10
+	backface-visibility hidden
+	-webkit-transform translateZ(0)
 
 #top
 	width 800px
@@ -170,11 +164,13 @@ h1
 	font-weight normal
 
 
+
+// section start
+
 // about
 #about
 	position relative
-	background url("../img/background001.jpg") black fixed
-	background-position center
+	background url("../img/background001.jpg") black center fixed
 	background-size cover
 	size(100%)
 
@@ -188,12 +184,35 @@ h1
 		center(50%)
 
 
+// veriety
 #variety
 	position relative
-	background url("../img/background004.jpg") black fixed
-	background-position center
+	background url("../img/background002.jpg") black center fixed
 	background-size cover
-	size(100%)
+	size(150%)
+
+	> div
+		width 400px
+		text-align center
+
+		> img
+			width 200px
+			border 20px solid #aaa
+		
+		> p
+			color white
+			font-size 1.4em
+			margin 0
+	
+	.logo
+		center(18%, 30%)
+	
+	.hogee
+		center(47%, 60%)
+	
+	.head
+		center(80%, 30%)
+				
 
 // information
 #information

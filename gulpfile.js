@@ -2,6 +2,7 @@
 var fs = require("fs");
 
 var gulp = require("gulp");
+var concat = require("gulp-concat");
 var clean = require("gulp-clean");
 var gulpif = require("gulp-if");
 var plumber = require("gulp-plumber");
@@ -34,19 +35,32 @@ var pngquant = require("imagemin-pngquant");
 var zopflipng = require("imagemin-zopfli");
 
 
-function releaseHTML(minify) {
+function releaseHTML(release) {
 	var options = JSON.parse(fs.readFileSync("./develop/ejs/index.json", "utf8"));
+
+	if(release) {
+		options.style = ["style.css"];
+		options.script = ["build.js"];
+	}
 	
 	gulp.src("develop/ejs/index.ejs")
 		.pipe(plumber())
 		.pipe(ejs(options))
-		.pipe(gulpif(minify, minifyHTML(), prettify()))
+		.pipe(gulpif(release, minifyHTML(), prettify()))
 		.pipe(gulp.dest("release"))
-		.pipe(gulpif(minify, zopfli()))
-		.pipe(gulpif(minify, gulp.dest("release")));
+		.pipe(gulpif(release, zopfli()))
+		.pipe(gulpif(release, gulp.dest("release")));
 }
 
-function releaseCSS(minify) {
+function releaseCSS(release) {
+	var options = JSON.parse(fs.readFileSync("./develop/ejs/index.json", "utf8"));
+	var src = options.style;
+	var num = 0, max = 2;
+
+	for(var i=0, l=src.length; i<l; ++i) {
+		src[i] = "temp/" + src[i];
+	}
+
 	gulp.src("develop/stylus/*.styl")
 		.pipe(plumber())
 		.pipe(stylus())
@@ -61,36 +75,79 @@ function releaseCSS(minify) {
 			'Safari >= 6'
 		])).pipe(csscomb())
 		.pipe(base64())
-		.pipe(gulpif(minify, minifyCSS()))
-		.pipe(gulp.dest("release/css"))
-		.pipe(gulpif(minify, zopfli()))
-		.pipe(gulpif(minify, gulp.dest("release/css")));
+		.pipe(gulp.dest("temp"))
+		.on("end", onEnd);
 
 	gulp.src(["develop/stylus/normalize.css", "develop/stylus/sweet-alert.css"])
-		.pipe(gulpif(minify, minifyCSS()))
-		.pipe(gulp.dest("release/css"))
-		.pipe(gulpif(minify, zopfli()))
-		.pipe(gulpif(minify, gulp.dest("release/css")));
+		.pipe(gulp.dest("temp"), onEnd)
+		.on("end", onEnd);
+
+
+	function tempToRelease() {
+		if(release) {
+			gulp.src(src)
+				.pipe(concat("style.css"))
+				.pipe(gulpif(release, minifyCSS()))
+				.pipe(gulp.dest("release/css"))
+				.pipe(zopfli())
+				.pipe(gulp.dest("release/css"))
+				.on("end", clearTemp);
+		} else {
+			gulp.src(src)
+				.pipe(gulpif(release, minifyCSS()))
+				.pipe(gulp.dest("release/css"))
+				.on("end", clearTemp);
+		}
+
+		function clearTemp() {
+			gulp.src("temp", {read: false})
+				.pipe(clean());
+		}
+
+	}
+
+	function onEnd() {
+		++num;
+		if(num === max) {
+			tempToRelease();
+		}
+	}
+
 }
 
-function releaseJS(minify) {
-	gulp.src("develop/js/*.js")
+function releaseJS(release) {
+	var options = JSON.parse(fs.readFileSync("./develop/ejs/index.json", "utf8"));
+	var src = options.script;
+
+	for(var i=0, l=src.length; i<l; ++i) {
+		src[i] = "develop/js/" + src[i];
+	}
+
+	gulp.src("develop/js/loading.js")
 		.pipe(plumber())
-		.pipe(gulpif(minify, uglify({preserveComments:"some"})))
+		.pipe(gulpif(release, uglify({preserveComments:"some"})))
 		.pipe(gulp.dest("release/js"))
-		.pipe(gulpif(minify, zopfli()))
-		.pipe(gulpif(minify, gulp.dest("release/js")));
+		.pipe(gulpif(release, zopfli()))
+		.pipe(gulpif(release, gulp.dest("release/js")));
+
+	gulp.src(src)
+		.pipe(plumber())
+		.pipe(gulpif(release, concat("build.js")))
+		.pipe(gulpif(release, uglify({preserveComments:"some"})))
+		.pipe(gulp.dest("release/js"))
+		.pipe(gulpif(release, zopfli()))
+		.pipe(gulpif(release, gulp.dest("release/js")));
 }
 
-function releaseImage(minify) {
+function releaseImage(release) {
 	gulp.src("develop/img/*.png")
-		.pipe(gulpif(minify, pngquant({speed: 1})()))
-		.pipe(gulpif(minify, zopflipng({more: true})()))
+		.pipe(gulpif(release, pngquant({speed: 1})()))
+		.pipe(gulpif(release, zopflipng({more: true})()))
 		.pipe(gulp.dest("release/img"));
 
 	gulp.src("develop/img/*.jpg")
-		.pipe(gulpif(minify, jpegoptim({max: 90})()))
-		.pipe(gulpif(minify, mozjpeg()()))
+		.pipe(gulpif(release, jpegoptim({max: 90})()))
+		.pipe(gulpif(release, mozjpeg()()))
 		.pipe(gulp.dest("release/img"));
 
 
@@ -98,8 +155,8 @@ function releaseImage(minify) {
 		.pipe(gulp.dest("release"));
 
 	gulp.src(["develop/webclip.png", "develop/ogp.png"])
-		.pipe(gulpif(minify, pngquant({speed: 1})()))
-		.pipe(gulpif(minify, zopflipng({more: true})()))
+		.pipe(gulpif(release, pngquant({speed: 1})()))
+		.pipe(gulpif(release, zopflipng({more: true})()))
 		.pipe(gulp.dest("release"));
 }
 

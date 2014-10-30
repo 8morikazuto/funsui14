@@ -16,7 +16,8 @@
         confirmButtonColor: '#AEDEF4',
         cancelButtonText: 'Cancel',
         imageUrl: null,
-        imageSize: null
+        imageSize: null,
+        timer: null
       };
 
 
@@ -189,7 +190,7 @@
     .done(function(html) {
       jQuery('body').append(html);
     });*/
-  };
+  }
 
   /*
    * Global sweetAlert function
@@ -225,10 +226,10 @@
         params.showCancelButton   = arguments[0].showCancelButton !== undefined ? arguments[0].showCancelButton : defaultParams.showCancelButton;
         params.closeOnConfirm     = arguments[0].closeOnConfirm !== undefined ? arguments[0].closeOnConfirm : defaultParams.closeOnConfirm;
         params.closeOnCancel      = arguments[0].closeOnCancel !== undefined ? arguments[0].closeOnCancel : defaultParams.closeOnCancel;
+        params.timer              = arguments[0].timer || defaultParams.timer;
 
         // Show "Confirm" instead of "OK" if cancel button is visible
         params.confirmButtonText  = (defaultParams.showCancelButton) ? 'Confirm' : defaultParams.confirmButtonText;
-
         params.confirmButtonText  = arguments[0].confirmButtonText || defaultParams.confirmButtonText;
         params.confirmButtonColor = arguments[0].confirmButtonColor || defaultParams.confirmButtonColor;
         params.cancelButtonText   = arguments[0].cancelButtonText || defaultParams.cancelButtonText;
@@ -588,6 +589,9 @@
     // Done-function
     var hasDoneFunction = (params.doneFunction) ? true : false;
     modal.setAttribute('data-has-done-function', hasDoneFunction);
+
+    // Close timer
+    modal.setAttribute('data-timer', params.timer);
   }
 
 
@@ -655,6 +659,13 @@
     setTimeout(function() {
       addClass(modal, 'visible');
     }, 500);
+
+    var timer = modal.getAttribute('data-timer');
+    if (timer !== "null") {
+      setTimeout(function() {
+        closeModal();
+      }, timer);
+    }
   }
 
   function closeModal() {
@@ -710,23 +721,23 @@
    */
 
   (function () {
-	  if (document.readyState === "complete" || document.readyState === "interactive" && document.body) {
-		  sweetAlertInitialize();
-	  } else {
-		  if (document.addEventListener) {
-			  document.addEventListener('DOMContentLoaded', function factorial() {
-				  document.removeEventListener('DOMContentLoaded', arguments.callee, false);
-				  sweetAlertInitialize();
-			  }, false);
-		  } else if (document.attachEvent) {
-			  document.attachEvent('onreadystatechange', function() {
-				  if (document.readyState === 'complete') {
-					  document.detachEvent('onreadystatechange', arguments.callee);
-					  sweetAlertInitialize();
-				  }
-			  });
-		  }
-	  }
+    if (document.readyState === "complete" || document.readyState === "interactive" && document.body) {
+      sweetAlertInitialize();
+    } else {
+      if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', function factorial() {
+          document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+          sweetAlertInitialize();
+        }, false);
+      } else if (document.attachEvent) {
+        document.attachEvent('onreadystatechange', function() {
+          if (document.readyState === 'complete') {
+            document.detachEvent('onreadystatechange', arguments.callee);
+            sweetAlertInitialize();
+          }
+        });
+      }
+    }
   })();
 
 })(window, document);

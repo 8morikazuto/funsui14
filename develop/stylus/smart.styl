@@ -5,11 +5,9 @@
 		min-height 0
 	
 	// class
-	.decoration:before
+	.decoration:before, .decoration:after
 		width calc(40% - 20px)
 	
-	.decoration:after
-		width calc(40% - 20px)
 
 	// header
 	#top, #introduction
@@ -17,11 +15,22 @@
 		font-size 0.8em
 	
 	// section
-	#about, #information, #darkknight, #poster, #special, #contact
+	#about, #information, #variety, #darkknight, #poster, #special, #contact
 		> div
 			width 90%
 			font-size 0.8em
-	
+			
+	#variety
+		> div
+			width 60%
+			
+			> img
+				width 60%
+				border 5px solid #aaa
+			
+			> p
+				font-size 1.0em
+
 	#darkknight
 		> div
 			>img
