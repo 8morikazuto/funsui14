@@ -20,6 +20,7 @@
 			_this.$main = $("main");
 			_this.$video = $("video");
 			_this.$vcanvas = $("#vcanvas");
+			_this.$skip = $("#skip");
 			_this.$top = $("#top");
 
 			// jquery.srcset
@@ -82,7 +83,6 @@
 						};
 			})();
 
-			// Mobile
 			var width = this.$window.width();
 			var height = this.$main.height();
 			var canvas = this.$vcanvas[0];
@@ -104,10 +104,10 @@
 						drawImageProp(ctx, lastImage.img, 0, 0, width, height, 0.5, 0.5);
 					});
 
+					hideSkip();
 					delete _this.xjpeg;
 					_this.displayTop();
 				}
-
 			};
 
 			this.$video.css("display", "none");
@@ -126,6 +126,10 @@
 				canvas.height = height;
 			});
 
+			this.$skip.on("touchstart", function() {
+				i = l - 5;
+			});
+
 		} else {
 
 			// PC
@@ -133,8 +137,29 @@
 			video.play();
 
 			this.$video.on("ended", function() {
+				hideSkip();
 				_this.displayTop();
 			});
+
+			this.$skip.on("click", function() {
+				video.currentTime = video.duration - 1.0;
+			});
+
+		}
+
+		function hideSkip() {
+			var $skip = _this.$skip;
+
+			if(Modernizr.csstransitions) {
+				$skip.addClass("hide");
+				$skip.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
+					$skip.addClass("end");
+				});
+			} else {
+				$skip.animate({opacity: 0}, 300, function() {
+					$skip.addClass("end");
+				});
+			}
 
 		}
 
