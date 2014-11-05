@@ -1,8 +1,22 @@
+/*! Copyright (c) 2014 九州大学噴水企画'14 | MIT Lisence | http://git.io/JbFCbw */
+
 // init
 html, body
+	font-family "Maru Folk Regular"
 	width 100%
 	height 100%
-	backgroud black
+
+
+// function
+size(percent)
+	width 100%
+	height percent
+
+center(percentTop, parcentLeft = 50%)
+	position absolute
+	top percentTop
+	left parcentLeft
+	transform translate(-50%, -50%)
 
 
 // class
@@ -37,16 +51,51 @@ html, body
 	background white
 
 
-// function
-size(percent)
+// glide
+.slider
+	height 70%
 	width 100%
-	height percent
+	overflow hidden
 
-center(percentTop, parcentLeft = 50%)
+.slides
+	height 100%
+	width 100%
+	list-style-type none
+	margin 0
+	padding 0
+
+.slide
+	height 100%
+	width 100%
+	float left
+	clear none
+	
+	img
+		position relative
+		top 40%
+		transform translateY(-50%)
+		margin 0 10px
+	
+	a
+		text-decoration none
+
+
+.slider__nav
 	position absolute
-	top percentTop
-	left parcentLeft
-	transform translate(-50%, -50%)
+	bottom 25px
+
+.slider__nav-item
+	width 12px
+	height 12px
+	float left
+	clear none
+	display block
+	margin 0 10px
+	background gray
+	border-radius 50%
+
+.slider__nav-item--current
+	background white
 
 
 // loading
@@ -189,13 +238,13 @@ h1
 	position relative
 	background url("../img/background002.jpg") black center fixed
 	background-size cover
-	size(150%)
+	size(200%)
 
 	> div
-		width 400px
+		width 300px
 		text-align center
 
-		> img
+		> img:nth-child(1)
 			width 200px
 			border 20px solid #aaa
 		
@@ -205,20 +254,29 @@ h1
 			margin 0
 	
 	.logo
-		center(18%, 30%)
+		center(16%, 30%)
 	
 	.hogee
-		center(47%, 60%)
+		center(39%, 70%)
+		
+		> img:nth-child(2)
+			position absolute
+			width 300px
+			transform translate(-460px, -30px)
 	
 	.head
-		center(80%, 30%)
-				
+		center(68%, 30%)
+		
+		> img:nth-child(2)
+			position absolute
+			width 400px
+			transform translate(-62px, -60px)
 
 // information
 #information
 	position relative
 	background black
-	background radial-gradient(350px, #333, black)
+	background radial-gradient(350px, #222, black)
 	size(100%)
 
 	> div
@@ -242,30 +300,58 @@ h1
 		text-align center
 		center(50%)
 		
-		> img
-			width 800px
+		> h2
+			> img
+				width 800px
+		
+		> span
+			font-size 1.4em
+
+#DKNthumb
+	width 240px
 
 #poster
 	position relative
-	background #333
+	background url("../img/background003.jpg") black center fixed
+	background-size cover
 	color white
 	size(50%)
 
 	> div
-		width 800px
+		width 100%
+		height 100%
 		text-align center
-		center(50%)
+		
+		> p
+			height 30%
+			margin 0
+			padding 1.7em 0 0 0
+			border 0
+			box-sizing border-box
+			font-size 1.3em
+			line-height 1.7em
+		
 
 #special
 	position relative
-	background #555
+	background url("../img/background004.jpg") black center fixed
+	background-size cover
 	color white
 	size(50%)
 
 	> div
-		width 800px
+		width 100%
+		height 100%
 		text-align center
-		center(50%)
+		
+		> p
+			height 30%
+			margin 0
+			padding 1.7em 0 0 0
+			border 0
+			box-sizing border-box
+			font-size 1.3em
+			line-height 1.7em
 
 #contact
 	position relative

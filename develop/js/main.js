@@ -25,6 +25,14 @@
 			// jquery.srcset
 			$("img").srcset();
 
+			// jquery.glide
+			$(".slider").glide({
+				autoplay: false
+			});
+
+			// DKN
+			//_this.setDKNImage();
+
 			// mail
 			_this.setMailSystem();
 
@@ -33,8 +41,7 @@
 
 			// mobile
 			if(_this.isMobile) {
-				_this.$main.height("availHeight" in screen ? screen.availHeight : screen.height);
-				_this.loadXJPEG();
+				_this.setMobile();
 			}
 
 			// fix
@@ -83,14 +90,21 @@
 			var ctx = canvas.getContext("2d");
 			var images = this.xjpeg.frames, i = 0, l = images.length;
 
+
 			var drawVideo = function() {
 				if(i < l) {
 					drawImageProp(ctx, images[i].img, 0, 0, width, height, 0.5, 0.5);
 					++i;
 					requestAnimationFrame(drawVideo);
 				} else {
-					delete _this.xjpeg;
+					// end
+					var lastImage = _this.xjpeg.frames[i-1];
 
+					_this.$window.on("orientationchange", function() {
+						drawImageProp(ctx, lastImage.img, 0, 0, width, height, 0.5, 0.5);
+					});
+
+					delete _this.xjpeg;
 					_this.displayTop();
 				}
 
@@ -103,7 +117,14 @@
 
 			requestAnimationFrame(drawVideo);
 
-			// resize TODO
+			// orientation
+			this.$window.on("orientationchange", function() {
+				width = _this.$window.width();
+				height = _this.$main.height();
+
+				canvas.width = width;
+				canvas.height = height;
+			});
 
 		} else {
 
@@ -201,27 +222,26 @@
 
 	};
 	
-	Funsui.prototype.getDKImage = function() {
+	Funsui.prototype.setDKNImage = function() {
 		var uri = "https://www.googleapis.com/youtube/v3/playlistItems";
 		var request = {
 			part:		"snippet",
 			maxResults:	1,
 			playlistId:	"PL1vSSpchqjDoPpXHgCrk8E6EUTomrvB6P",
-			key:		"AIzaSyCy-noT8pQOp4yCaMtOkbBoqdwUZGKsS3A"
+			key:		"AIzaSyBgmnnbRLGpKwqsyRy8ctjcPQWlKjYbfxI"
+			//key:		"AIzaSyCy-noT8pQOp4yCaMtOkbBoqdwUZGKsS3A"
 		};
 
-		$.get(uri, request).done(function() {
+		var $DKN = $("#DKNthumb");
+
+		$.get(uri, request).done(function(val) {
 			var snippet = val.items[0].snippet;
 			var img = snippet.thumbnails.high;
-			console.log(img);
+			$DKN.attr("src", img.url);
 		});
 
 	};
 
-	Funsui.prototype.loadXJPEG = function() {
-		var aisplitter = new AISplitter();
-		this.xjpeg = aisplitter.read("video/funsui.xjpg", "XJPEG");
-	};
 
 	Funsui.prototype.loadEnd = function() {
 		var _this = this;
@@ -232,6 +252,38 @@
 		} else {
 			this.loaded = true;
 		}
+	};
+
+	Funsui.prototype.setMobile = function() {
+		var _this = this;
+		setMainHeight();
+		this.loadXJPEG();
+
+		this.$window.on("orientationchange", function() {
+			setMainHeight();
+			_this.fixCssCalc();
+		});
+
+		function setMainHeight() {
+			var height;
+			if(_this.isLandscape())
+				height = "availWidth" in screen ? screen.availWidth : screen.width;
+			else
+				height = "availHeight" in screen ? screen.availHeight : screen.height;
+			_this.$main.height(height);
+		}
+	};
+
+	Funsui.prototype.loadXJPEG = function() {
+		var aisplitter = new AISplitter();
+		this.xjpeg = aisplitter.read("video/funsui.xjpg", "XJPEG");
+	};
+
+	Funsui.prototype.isLandscape = function() {
+		if(window.orientation * window.orientation === 8100)
+			return true;
+		else
+			return false;
 	};
 
 	Funsui.prototype.fixBackgroundFixed = function() {
@@ -267,15 +319,23 @@
 		}
 	};
 
-	Funsui.prototype.fixCssCalc = function() {
-		if(!Modernizr.csscalc && this.isMobile) {
-			var aboutWidth = $("#about>div").width();
-			var width = aboutWidth * 0.4 - 20;
+	Funsui.prototype.fixCssCalc = (function() {
+		var $old = null;
 
-			// http://stackoverflow.com/questions/10061414/changing-width-property-of-a-before-css-selector-using-jquery
-			this.$head.append("<style>.decoration:before,.decoration:after{width:" + width + "px !important;}</style>");
-		}
-	};
+		return function() {
+			if(!Modernizr.csscalc && this.isMobile) {
+				var aboutWidth = $("#about>div").width();
+				var width = aboutWidth * 0.4 - 20;
+				var $head = this.$head;
+
+				// http://stackoverflow.com/questions/10061414/changing-width-property-of-a-before-css-selector-using-jquery
+				$head.append("<style>.decoration:before,.decoration:after{width:" + width + "px !important;}</style>");
+
+				if($old !== null) $old.remove();
+				$old = $head.children("style").last();
+			}
+		};
+	})();
 
 	Funsui.prototype.setMailSystem = function() {
 		var _this = this;
@@ -364,11 +424,9 @@
 	};
 
 	Funsui.prototype.changeMailState = function(flag) {
-		var state = this.mail.$form.hasClass("cancel");
-
-		if(flag && state) {
+		if(flag) {
 			this.mail.$form.removeClass("cancel");
-		} else if(!flag && !state) {
+		} else {
 			this.mail.$form.addClass("cancel");
 		}
 	};

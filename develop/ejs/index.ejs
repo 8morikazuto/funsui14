@@ -29,7 +29,10 @@
 		<%- '<link rel="stylesheet" href="css/'+ style[i] +'">' %>
 	<% } %>
 
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-36723060-5','auto');ga('send','pageview');</script>
+<script src="//typesquare.com/accessor/script/typesquare.js?Kx3pTJNYFhs%3D"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-36723060-5','auto');ga('send','pageview');
+</script>
 
 </head>
 <body>
@@ -52,7 +55,7 @@
 				</h1>
 			</div>
 			<div id="introduction">
-				<h2>イントロダクション</h2>		
+				<h2>イントロダクション</h2>	
 				<% for(var i=0; i<introduction.length; ++i) { %>
 					<p><%= introduction[i][0] %>
 					<% for(var j=1; j<introduction[i].length; ++j) { %>
@@ -85,10 +88,12 @@
 			</div>
 			<div class="hogee">
 				<img src="img/hogee.png" srcset="img/hogee@2x.png 2x" alt="2014年イメージキャラクター">
+				<%- '<img src="img/hogee_c.png" srcset="img/hogee_c@2x.png 2x" alt="'%><%= variety.hogee %><%-'">' %>
 				<p>イメージゆるキャラ・ほげぇ</p>
 			</div>
 			<div class="head">
 				<img src="img/uirou.jpg" srcset="img/uirou@2x.jpg 2x" alt="2014年頭">
+				<%- '<img src="img/uirou_c.png" srcset="img/uirou_c@2x.png 2x" alt="'%><%= variety.uirou %><%-'">' %>
 				<p>2014年三研頭・ういろう</p>
 			</div>
 		</section>
@@ -106,32 +111,56 @@
 
 		<section id="darkknight">
 			<div>
-				<img src="img/darkknight.png" srcset="img/darkknight@2x.png 2x" alt="ダークナイトニッポン">
+				<h2><img src="img/darkknight.png" srcset="img/darkknight@2x.png 2x" alt="ダークナイトニッポン"></h2>
 				<% for(var i=0; i<darkknight.length; ++i) { %>
 					<br><%= darkknight[i] %>
 				<% } %>
+				<br>
+				<span>最新回！</span>
+				<br>
+				<a href="darkknight"><img id="DKNthumb" src="img/thumb/DKN.png" alt="ダークナイトニッポン"></a>
+			</div>
+		</section>
 
-				<h2>最新回！<h2>
-				<div id="youtube">
+		<section id="poster" class="fixbf">
+			<div>
+				<p>
+				<%= poster.content[0] %>
+				<% for(var i=1; i<poster.content.length; ++i) { %>
+					<br><%= poster.content[i] %>
+				<% } %>
+				</p>
+				<div class="slider">
+					<ul class="slides">
+					<% for(var i=poster.num; i>0; --i) { %>
+						<% if((poster.num - i) % 4 === 0) { %>
+							<li class="slide">
+						<% } %>
+						<%- '<a href="img/poster0'+ (i < 10 ? "0"+i : i) +'.jpg" target="_blank"><img src="img/thumb/poster0'+ (i < 10 ? "0"+i : i) +'.png" srcset="img/thumb/poster0'+ (i < 10 ? "0"+i : i) +'@2x.png 2x"></a>' %>
+					<% } %>
+					</ul>
 				</div>
 			</div>
 		</section>
 
-		<section id="poster">
+		<section id="special" class="fixbf">
 			<div>
-				<%= poster[0] %>
-				<% for(var i=1; i<poster.length; ++i) { %>
-					<br><%= poster[i] %>
+				<p>
+				<%= special.content[0] %>
+				<% for(var i=1; i<special.content.length; ++i) { %>
+					<br><%= special.content[i] %>
 				<% } %>
-			</div>
-		</section>
-
-		<section id="special">
-			<div>
-				<%= special[0] %>
-				<% for(var i=1; i<special.length; ++i) { %>
-					<br><%= special[i] %>
-				<% } %>
+				</p>
+				<div class="slider">
+					<ul class="slides">
+					<% for(var i=special.num; i>0; --i) { %>
+						<% if((special.num - i) % 4 === 0) { %>
+							<li class="slide">
+						<% } %>
+						<%- '<a href="img/wall0'+ (i < 10 ? "0"+i : i) +'.jpg" target="_blank"><img src="img/thumb/wall0'+ (i < 10 ? "0"+i : i) +'.png" srcset="img/thumb/wall0'+ (i < 10 ? "0"+i : i) +'@2x.png 2x"></a>' %>
+					<% } %>
+					</ul>
+				</div>
 			</div>
 		</section>
 

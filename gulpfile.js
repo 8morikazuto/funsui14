@@ -86,15 +86,14 @@ function releaseCSS(release) {
 	function tempToRelease() {
 		if(release) {
 			gulp.src(src)
+				.pipe(minifyCSS())
 				.pipe(concat("style.css"))
-				.pipe(gulpif(release, minifyCSS()))
 				.pipe(gulp.dest("release/css"))
 				.pipe(zopfli())
 				.pipe(gulp.dest("release/css"))
 				.on("end", clearTemp);
 		} else {
-			gulp.src(src)
-				.pipe(gulpif(release, minifyCSS()))
+			gulp.src("temp/**")
 				.pipe(gulp.dest("release/css"))
 				.on("end", clearTemp);
 		}
@@ -112,7 +111,6 @@ function releaseCSS(release) {
 			tempToRelease();
 		}
 	}
-
 }
 
 function releaseJS(release) {
@@ -149,6 +147,16 @@ function releaseImage(release) {
 		.pipe(gulpif(release, jpegoptim({max: 90})()))
 		.pipe(gulpif(release, mozjpeg()()))
 		.pipe(gulp.dest("release/img"));
+
+	gulp.src("develop/img/thumb/*.png")
+		.pipe(gulpif(release, pngquant({speed: 1})()))
+		.pipe(gulpif(release, zopflipng({more: true})()))
+		.pipe(gulp.dest("release/img/thumb"));
+
+	gulp.src("develop/img/thumb/*.jpg")
+		.pipe(gulpif(release, jpegoptim({max: 90})()))
+		.pipe(gulpif(release, mozjpeg()()))
+		.pipe(gulp.dest("release/img/thumb"));
 
 
 	gulp.src("develop/favicon.ico")
@@ -203,7 +211,7 @@ gulp.task("clean", function() {
 
 gulp.task("watch", function() {
 	gulp.run("default");
-	gulp.watch(["develop/ejs/index.ejs", "develop/ejs/index.json"], function() {
+	gulp.watch("develop/ejs/**", function() {
 		releaseHTML();
 	});
 	gulp.watch("develop/stylus/*.styl", function() {
