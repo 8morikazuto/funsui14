@@ -238,11 +238,11 @@ gulp.task("jpeg", function() {
 		.pipe(mozjpeg()())
 		.pipe(gulp.dest("image/minjpeg"));
 });
-
+*/
 gulp.task("png", function() {
-	gulp.src("image/png/**")
+	gulp.src("develop/embed/arrow.png")
 		.pipe(pngquant({speed : 1})())
 		.pipe(zopflipng({more : true})())
-		.pipe(gulp.dest("image/minpng"));
+		.pipe(gulp.dest("develop/embed/arrow2.png"));
 });
-*/
+

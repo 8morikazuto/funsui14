@@ -1,8 +1,10 @@
 /*! Copyright (c) 2014 九州大学噴水企画'14 | MIT Lisence | http://git.io/JbFCbw */
 
 // init
-html, body
+*
 	font-family "Maru Folk Regular"
+
+html, body
 	width 100%
 	height 100%
 
@@ -53,6 +55,7 @@ center(percentTop, parcentLeft = 50%)
 
 // glide
 .slider
+	position relative
 	height 70%
 	width 100%
 	overflow hidden
@@ -96,6 +99,23 @@ center(percentTop, parcentLeft = 50%)
 
 .slider__nav-item--current
 	background white
+
+.slider__arrows-item
+	position absolute
+	display block
+	top 40%
+	width 117px
+	height 200px
+	background url("../embed/arrow.min.png")
+	background-size 100%
+
+.slider__arrows-item--left
+	left 5px
+	transform translateY(-50%)
+
+.slider__arrows-item--right
+	right 5px
+	transform translateY(-50%) rotate(180deg)
 
 
 // loading
@@ -175,6 +195,16 @@ header
 		transform translate3d(-50%, -50%, 0)
 		z-index -10
 	
+#vimage
+	position fixed
+	top 50%
+	left 50%
+	z-index -10
+	min-width 100%
+	min-height 100%
+	backface-visibility hidden
+	transform translate(-50%, -50%)
+
 #vcanvas
 	position fixed
 	top 0
@@ -423,4 +453,26 @@ h1
 	input[type="submit"]
 		background #828282
 		cursor default
+		
+footer
+	background white
+	size(20%)
+	text-align left
+	font-size 1.5em
 
+	table 
+		margin 0 auto
+		
+		th
+			font-weight normal
+		
+		td,th
+			padding 0.3em 0.5em
+			
+			> a
+				text-decoration none
+				color black
+			
+			> a:link, a:visited
+				color black
+				

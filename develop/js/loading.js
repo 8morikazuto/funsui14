@@ -60,7 +60,7 @@
 	}
 
 	function getLoadPercentLazy() {
-		var ret = pp + (getLoadPercent() - pp) * 0.1;
+		var ret = pp + (getLoadPercent() - pp) * 0.05;
 		pp = ret;
 		return ret;
 	}

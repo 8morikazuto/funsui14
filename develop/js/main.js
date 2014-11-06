@@ -12,27 +12,34 @@
 		this.isMobile = (/Android|iPhone|iPad|iPod|BlackBerry/i).test(window.navigator.userAgent || window.navigator.vendor || window.opera);
 		this.isChrome = !!window.chrome;
 
+		this.isAndroid = (/Mozilla\/5.0/i).test(window.navigator.userAgent) && (/AppleWebKit/i).test(window.navigator.userAgent) && (/Android/i).test(window.navigator.userAgent) && !this.isChrome;
+
 		var _this = this;
 
 		$(function() {
 			// jQuery
+			_this.$html = $("html");
 			_this.$head = $("head");
 			_this.$main = $("main");
 			_this.$video = $("video");
-			_this.$vcanvas = $("#vcanvas");
 			_this.$skip = $("#skip");
 			_this.$top = $("#top");
+
+			_this.$vimage = $("#vimage");
+			_this.$vcanvas = $("#vcanvas");
 
 			// jquery.srcset
 			$("img").srcset();
 
 			// jquery.glide
 			$(".slider").glide({
-				autoplay: false
+				autoplay: false,
+				arrowRightText : "",
+				arrowLeftText : ""
 			});
 
 			// DKN
-			//_this.setDKNImage();
+			_this.setDKNImage();
 
 			// mail
 			_this.setMailSystem();
@@ -71,8 +78,13 @@
 			});
 		}
 
-		
-		if(this.isMobile) {
+		if(this.isAndroid) {
+
+			setTimeout(function() {
+				_this.displayTop();
+			}, 500);
+
+		} else if(this.isMobile) {
 
 			var requestAnimationFrame = (function() {
 				return  window.requestAnimationFrame       ||
@@ -132,7 +144,8 @@
 
 		} else {
 
-			// PC
+			// PC, Android4x
+
 			var video = this.$video[0];
 			video.play();
 
@@ -219,7 +232,7 @@
 	Funsui.prototype.setBlur = function() {
 		var _this = this;
 
-		var timer = null, time = 100;
+		var timer = null, time = 50;
 
 		this.$window.on("scroll", function() {
 			if(timer === null) {
@@ -253,8 +266,7 @@
 			part:		"snippet",
 			maxResults:	1,
 			playlistId:	"PL1vSSpchqjDoPpXHgCrk8E6EUTomrvB6P",
-			key:		"AIzaSyBgmnnbRLGpKwqsyRy8ctjcPQWlKjYbfxI"
-			//key:		"AIzaSyCy-noT8pQOp4yCaMtOkbBoqdwUZGKsS3A"
+			key:		"AIzaSyCy-noT8pQOp4yCaMtOkbBoqdwUZGKsS3A"
 		};
 
 		var $DKN = $("#DKNthumb");
@@ -270,7 +282,11 @@
 
 	Funsui.prototype.loadEnd = function() {
 		var _this = this;
-		if(this.isMobile) {
+		if(this.isAndroid) {
+			this.$vimage.on("load", function() {
+				_this.loaded = true;
+			});
+		}else if(this.isMobile) {
 			this.xjpeg.on("load", function() {
 				_this.loaded = true;
 			});
@@ -282,7 +298,11 @@
 	Funsui.prototype.setMobile = function() {
 		var _this = this;
 		setMainHeight();
-		this.loadXJPEG();
+
+		if(this.isAndroid)
+			this.loadVImage();
+		else
+			this.loadXJPEG();
 
 		this.$window.on("orientationchange", function() {
 			setMainHeight();
@@ -291,12 +311,19 @@
 
 		function setMainHeight() {
 			var height;
-			if(_this.isLandscape())
+			if(_this.isLandscape()){
+				_this.$html.addClass("landscape");
 				height = "availWidth" in screen ? screen.availWidth : screen.width;
-			else
+			} else {
+				_this.$html.removeClass("landscape");
 				height = "availHeight" in screen ? screen.availHeight : screen.height;
+			}
 			_this.$main.height(height);
 		}
+	};
+
+	Funsui.prototype.loadVImage = function() {
+		this.$vimage.attr("src", "img/last.jpg");
 	};
 
 	Funsui.prototype.loadXJPEG = function() {
@@ -320,7 +347,7 @@
 			$fixbf.css('background-attachment', 'scroll');
 
 			// http://stackoverflow.com/questions/2637058/positions-fixed-doesnt-work-when-using-webkit-transform
-			if(this.isChrome) {
+			if(this.isChrome && !this.isMobile) {
 
 				var $variety = $("#variety");
 				$variety.css("background-size", "120%");

@@ -1,5 +1,5 @@
 /*!
- * Animation Image Splitter v1.0.1 | MIT Licence | 2014 Kenta Moriuchi (@printf_moriken)
+ * Animation Image Splitter v1.0.2 | MIT Licence | 2014 Kenta Moriuchi (@printf_moriken)
  *
  * This Program is inspired by APNG-canvas.
  * @copyright 2011 David Mzareulyan
@@ -106,6 +106,7 @@
 						};
 						reader.readAsBinaryString(this.response);
 
+
 					} else { // IE 10~
 
 						reader.onload = function() {
@@ -133,12 +134,14 @@
 							res += String.fromCharCode(c & 0xff, (c >> 8) & 0xff);
 						}
 
+
 					} else { // old Safari
 
 						var binStr = this.responseText;
 						for (var i = 0, len = binStr.length; i < len; ++i) {
 							res += String.fromCharCode(binStr.charCodeAt(i) & 0xff);
 						}
+
 
 					}
 					_this._switchType(res, type);
@@ -265,8 +268,11 @@
 
 		var data = imageStr.match(new RegExp(SOI+"[\\s\\S]+?"+EOI, "g"));
 
+		if(!("length" in data))
+			throw new Error("Can't read Binary String");
+
 		var frame;
-		for(var i = 0, l=data.length; i<l; ++i){
+		for(var i = 0, l=data.length; i<l; ++i) {
 			var SOFv = [], v = 0xc0;
 			while(v <= 0xcf) {
 				if(v !== 0xc4 && v !== 0xc8 && v !== 0xcc)
