@@ -82,6 +82,7 @@
 
 			setTimeout(function() {
 				_this.displayTop();
+				hideSkip();
 			}, 500);
 
 		} else if(this.isMobile) {
