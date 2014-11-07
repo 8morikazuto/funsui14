@@ -30,44 +30,44 @@ release フォルダが出力されます。　　
 
 ###JavaScript
 
-[jQuery] (フロントエンドを簡単に出来る。少々重いので可能ならば [zepto.js] や [Minified.js] を、腕に自身があれば [Vanilla JS] を使うべき)  
-[Modernizr] (HTML5, CSS3 の各種機能の対応を確認)  
-[Animation Image Splitter] (自作ライブラリ。APNG, XJPEG からフレームを切り出す)  
-[Glide] (jQueryプラグイン。レスポンシブ対応なスライド生成)  
-[SweetAlert] (jQueryプラグイン。綺麗なアラートを生成)  
-[jquery-srcset-retina-polyfill] (jQueryプラグイン。img タグの srcset の対応)  
+[jQuery] \(フロントエンドを簡単に出来る。少々重いので可能ならば [zepto.js] や [Minified.js] を、腕に自身があれば [Vanilla JS] を使うべき)  
+[Modernizr] \(HTML5, CSS3 の各種機能の対応を確認)  
+[Animation Image Splitter] \(自作ライブラリ。APNG, XJPEG からフレームを切り出す)  
+[Glide] \(jQueryプラグイン。レスポンシブ対応なスライド生成)  
+[SweetAlert] \(jQueryプラグイン。綺麗なアラートを生成)  
+[jquery-srcset-retina-polyfill] \(jQueryプラグイン。img タグの srcset の対応)  
 
 ###CSS
 
-[normalize.css] (ブラウザ間のデフォルトスタイルの違いを吸収)  
+[normalize.css] \(ブラウザ間のデフォルトスタイルの違いを吸収)  
 
 ###API
 
-[YouTube Data API v3] (YouTube から動画情報などを取得)  
+[YouTube Data API v3] \(YouTube から動画情報などを取得)  
 
 ###node.js プラグイン
 
-[Gulp] (タスクランナー。ファイルを監視して操作できる)  
-[gulp-concat] (テキストファイルの結合)  
-[gulp-clean] (ファイルの消去。非推奨なので使わないほうがいいです。。。)  
-[gulp-if] (Gulp 内で条件分岐。`gulp.dest()`を通らなかった時 end イベントを呼ばないので注意！)  
-[gulp-plumber] (Gulp 内でエラーを catch する)  
+[Gulp] \(タスクランナー。ファイルを監視して操作できる)  
+[gulp-concat] \(テキストファイルの結合)  
+[gulp-clean] \(ファイルの消去。非推奨なので使わないほうがいいです。。。)  
+[gulp-if] \(Gulp 内で条件分岐。`gulp.dest()`を通らなかった時 end イベントを呼ばないので注意！)  
+[gulp-plumber] \(Gulp 内でエラーを catch する)  
 
-[gulp-ejs] (EJS を HTML にコンパイル)  
-[gulp-stylus] (Stylus を CSS にコンパイル)  
-[gulp-prettify] (HTML の見栄えを良くする)  
-[gulp-autoprefixer] (CSS の prefix を自動でつけてくれる。options はちゃんと入れておいた方がいい)  
-[gulp-csscomb] (CSS のプロパティの順番を整理してくれる。圧縮率アップ)  
-[gulp-css-base64] (CSS のイメージを base64 に変換。HTTPリクエストを減らせる)  
-[gulp-minify-html] (HTML の minify)  
-[gulp-minify-css] (CSS の minify)  
-[gulp-uglify] (JavaScript の minify)  
-[gulp-zopfli] (テキストファイルを GZIP に、より小さく圧縮してくれる。zopfli 自体は Google が開発。かなり時間がかかる。中に含まれるバイナリが若干古い？)  
+[gulp-ejs] \(EJS を HTML にコンパイル)  
+[gulp-stylus] \(Stylus を CSS にコンパイル)  
+[gulp-prettify] \(HTML の見栄えを良くする)  
+[gulp-autoprefixer] \(CSS の prefix を自動でつけてくれる。options はちゃんと入れておいた方がいい)  
+[gulp-csscomb] \(CSS のプロパティの順番を整理してくれる。圧縮率アップ)  
+[gulp-css-base64] \(CSS のイメージを base64 に変換。HTTPリクエストを減らせる)  
+[gulp-minify-html] \(HTML の minify)  
+[gulp-minify-css] \(CSS の minify)  
+[gulp-uglify] \(JavaScript の minify)  
+[gulp-zopfli] \(テキストファイルを GZIP に、より小さく圧縮してくれる。zopfli 自体は Google が開発。かなり時間がかかる。中に含まれるバイナリが若干古い？)  
 
-[imagemin-jpegoptim] (JPEG の lossy 圧縮。)  
-[imagemin-mozjpeg] (JPEG の lossless 圧縮。mozjpeg 自体は mozilla が開発)  
-[imagemin-pngquant] (PNG の lossy 圧縮。24bit PNG を透明度を残したまま 8bit PNG にする。インデックスカラー化。圧縮後 Photoshop で開けないので注意！)  
-[imagemin-zopfli] (PNG の lossless 圧縮。zopfli の PNG への応用)  
+[imagemin-jpegoptim] \(JPEG の lossy 圧縮。)  
+[imagemin-mozjpeg] \(JPEG の lossless 圧縮。mozjpeg 自体は mozilla が開発)  
+[imagemin-pngquant] \(PNG の lossy 圧縮。24bit PNG を透明度を残したまま 8bit PNG にする。インデックスカラー化。圧縮後 Photoshop で開けないので注意！)  
+[imagemin-zopfli] \(PNG の lossless 圧縮。zopfli の PNG への応用)  
 
 
 [九州大学噴水企画'14]: http://www.design.kyushu-u.ac.jp/~festival/2014/funsui/ "九州大学噴水企画'14"
