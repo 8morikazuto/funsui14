@@ -1,7 +1,7 @@
-funsui14
-========
+#funsui14
+======
 
-[九州大学噴水企画'14]のWebサイトのソースです。Webの勉強のために自由に活用してください。  
+[九州大学噴水企画'14] のWebサイトのソースです。Webの勉強のために自由に活用してください。  
 ただし流用する場合はコメントなどに以下の記述を入れてください。
 
 `Copyright (c) 2014 九州大学噴水企画'14 | MIT Lisence | http://git.io/JbFCbw`
@@ -26,49 +26,57 @@ release フォルダが出力されます。　　
 
 もし実行できないときは[node.js]、[Gulp]をインストールしてください。
 
-##使用したライブラリ、外部サービス
+##使用したライブラリ、外部サービスなど
 
 ###JavaScript
 
-[jQuery] \(フロントエンドを簡単に出来る。少々重いので可能ならば [zepto.js] や [Minified.js] を、腕に自身があれば [Vanilla JS] を使うべき)  
-[Modernizr] \(HTML5, CSS3 の各種機能の対応を確認)  
-[Animation Image Splitter] \(自作ライブラリ。APNG, XJPEG からフレームを切り出す)  
-[Glide] \(jQuery プラグイン。レスポンシブ対応なスライド生成)  
-[SweetAlert] \(jQuery プラグイン。綺麗なアラートを生成)  
-[jquery-srcset-retina-polyfill] \(jQuery プラグイン。img タグの srcset の対応)  
+* [jQuery] \(フロントエンドを簡単に出来る。少々重いので可能ならば [zepto.js] や [Minified.js] を、腕に自身があれば [Vanilla JS] を使うべき)  
+* [Modernizr] \(HTML5, CSS3 の各種機能の対応を確認)  
+* [Animation Image Splitter] \(**自作ライブラリ**。APNG, XJPEG からフレームを切り出す)  
+* [Glide] \(jQuery プラグイン。レスポンシブ対応なスライド生成)  
+* [SweetAlert] \(jQuery プラグイン。綺麗なアラートを生成)  
+* [jquery-srcset-retina-polyfill] \(jQuery プラグイン。img タグの srcset の対応)  
 
 ###CSS
 
-[normalize.css] \(ブラウザ間のデフォルトスタイルの違いを吸収)  
+* [normalize.css] \(ブラウザ間のデフォルトスタイルの違いを吸収)  
 
 ###外部サービス
 
-[YouTube Data API v3] \(YouTube から動画情報などを取得)  
-[TypeSquare]  \(モリサワのクラウドフォントサービス。無料で1ドメイン、1フォントが使える)  
+* [YouTube Data API v3] \(YouTube から動画情報などを取得)  
+* [TypeSquare]  \(モリサワのクラウドフォントサービス。無料で1ドメイン、1フォントが使える)  
 
 ###node.js プラグイン
 
-[Gulp] \(タスクランナー。ファイルを監視して操作できる)  
-[gulp-concat] \(テキストファイルの結合)  
-[gulp-clean] \(ファイルの消去。非推奨なので使わないほうがいいです。。。)  
-[gulp-if] \(Gulp 内で条件分岐。`gulp.dest()`を通らなかった時 end イベントを呼ばないので注意！)  
-[gulp-plumber] \(Gulp 内でエラーを catch する)  
+* [Gulp] \(タスクランナー。ファイルを監視して操作できる)  
+* [gulp-concat] \(テキストファイルの結合)  
+* [gulp-clean] \(ファイルの消去。非推奨なので使わないほうがいいです。。。)  
+* [gulp-if] \(Gulp 内で条件分岐。`gulp.dest()`を通らなかった時 end イベントを呼ばないので注意！)  
+* [gulp-plumber] \(Gulp 内でエラーを catch する)  
 
-[gulp-ejs] \(EJS を HTML にコンパイル)  
-[gulp-stylus] \(Stylus を CSS にコンパイル)  
-[gulp-prettify] \(HTML の見栄えを良くする)  
-[gulp-autoprefixer] \(CSS の prefix を自動でつけてくれる。options はちゃんと入れておいた方がいい)  
-[gulp-csscomb] \(CSS のプロパティの順番を整理してくれる。圧縮率アップ)  
-[gulp-css-base64] \(CSS のイメージを base64 に変換。HTTPリクエストを減らせる)  
-[gulp-minify-html] \(HTML の minify)  
-[gulp-minify-css] \(CSS の minify)  
-[gulp-uglify] \(JavaScript の minify)  
-[gulp-zopfli] \(テキストファイルを GZIP に、より小さく圧縮してくれる。zopfli 自体は Google が開発。かなり時間がかかる。中に含まれるバイナリが若干古い？)  
+* [gulp-ejs] \(EJS を HTML にコンパイル)  
+* [gulp-stylus] \(Stylus を CSS にコンパイル)  
+* [gulp-prettify] \(HTML の見栄えを良くする)  
+* [gulp-autoprefixer] \(CSS の prefix を自動でつけてくれる。options はちゃんと入れておいた方がいい)  
+* [gulp-csscomb] \(CSS のプロパティの順番を整理してくれる。圧縮率アップ)  
+* [gulp-css-base64] \(CSS のイメージを base64 に変換。HTTPリクエストを減らせる)  
+* [gulp-minify-html] \(HTML の minify)  
+* [gulp-minify-css] \(CSS の minify)  
+* [gulp-uglify] \(JavaScript の minify)  
+* [gulp-zopfli] \(テキストファイルを GZIP に、より小さく圧縮してくれる。zopfli 自体は Google が開発。かなり時間がかかる。中に含まれるバイナリが若干古い？)  
 
-[imagemin-jpegoptim] \(JPEG の lossy 圧縮。)  
-[imagemin-mozjpeg] \(JPEG の lossless 圧縮。mozjpeg 自体は mozilla が開発)  
-[imagemin-pngquant] \(PNG の lossy 圧縮。24bit PNG を透明度を残したまま 8bit PNG にする。インデックスカラー化。圧縮後 Photoshop で開けないので注意！)  
-[imagemin-zopfli] \(PNG の lossless 圧縮。zopfli の PNG への応用)  
+* [imagemin-jpegoptim] \(JPEG の lossy 圧縮。)  
+* [imagemin-mozjpeg] \(JPEG の lossless 圧縮。mozjpeg 自体は Mozilla が開発)  
+* [imagemin-pngquant] \(PNG の lossy 圧縮。24bit PNG を透明度を残したまま 8bit PNG にする。インデックスカラー化。圧縮後 Photoshop で開けないので注意！)  
+* [imagemin-zopfli] \(PNG の lossless 圧縮。zopfli の PNG への応用)  
+
+###その他
+
+* [Sublime Text] \(恋に落ちるエディタ。めちゃくちゃ便利)  
+* [SourceTree] \(Git を GUI で操作)  
+* [Mou] \(Markdown 形式のエディタ)  
+* [apngasm] \(複数のPNG から APNG の生成。実験に使用)  
+* [CocoaCatX] \(JPEG をバイナリ結合する際に使用)
 
 
 [九州大学噴水企画'14]: http://www.design.kyushu-u.ac.jp/~festival/2014/funsui/ "九州大学噴水企画'14"
@@ -112,3 +120,9 @@ release フォルダが出力されます。　　
 [imagemin-mozjpeg]: https://www.npmjs.org/package/imagemin-mozjpeg
 [imagemin-pngquant]: https://www.npmjs.org/package/imagemin-pngquant
 [imagemin-zopfli]: https://www.npmjs.org/package/imagemin-zopfli
+
+[Sublime Text]: http://www.sublimetext.com/
+[SourceTree]: http://www.sourcetreeapp.com/
+[Mou]: http://25.io/mou/
+[apngasm]: https://github.com/apngasm/apngasm
+[CocoaCatX]: http://www5.wind.ne.jp/miko/mac_soft/cocoa_cat_x/
