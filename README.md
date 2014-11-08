@@ -26,24 +26,25 @@ release フォルダが出力されます。　　
 
 もし実行できないときは[node.js]、[Gulp]をインストールしてください。
 
-##使用したライブラリ、外部API
+##使用したライブラリ、外部サービス
 
 ###JavaScript
 
 [jQuery] \(フロントエンドを簡単に出来る。少々重いので可能ならば [zepto.js] や [Minified.js] を、腕に自身があれば [Vanilla JS] を使うべき)  
 [Modernizr] \(HTML5, CSS3 の各種機能の対応を確認)  
 [Animation Image Splitter] \(自作ライブラリ。APNG, XJPEG からフレームを切り出す)  
-[Glide] \(jQueryプラグイン。レスポンシブ対応なスライド生成)  
-[SweetAlert] \(jQueryプラグイン。綺麗なアラートを生成)  
-[jquery-srcset-retina-polyfill] \(jQueryプラグイン。img タグの srcset の対応)  
+[Glide] \(jQuery プラグイン。レスポンシブ対応なスライド生成)  
+[SweetAlert] \(jQuery プラグイン。綺麗なアラートを生成)  
+[jquery-srcset-retina-polyfill] \(jQuery プラグイン。img タグの srcset の対応)  
 
 ###CSS
 
 [normalize.css] \(ブラウザ間のデフォルトスタイルの違いを吸収)  
 
-###API
+###外部サービス
 
 [YouTube Data API v3] \(YouTube から動画情報などを取得)  
+[TypeSquare]  \(モリサワのクラウドフォントサービス。無料で1ドメイン、1フォントが使える)  
 
 ###node.js プラグイン
 
@@ -88,7 +89,9 @@ release フォルダが出力されます。　　
 [Modernizr]: http://modernizr.com/
 [Animation Image Splitter]: https://github.com/petamoriken/AISplitter
 [normalize.css]: http://necolas.github.io/normalize.css/
+
 [YouTube Data API v3]: https://developers.google.com/youtube/v3/
+[TypeSquare]: http://typesquare.com/
 
 [gulp-concat]: https://www.npmjs.org/package/gulp-concat
 [gulp-clean]: https://www.npmjs.org/package/gulp-clean
