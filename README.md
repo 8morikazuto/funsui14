@@ -52,8 +52,7 @@ release フォルダが出力されます。　　
 * [gulp-concat] \(テキストファイルの結合)  
 * [gulp-clean] \(ファイルの消去。非推奨なので使わないほうがいいです。。。)  
 * [gulp-if] \(Gulp 内で条件分岐。`gulp.dest()`を通らなかった時 end イベントを呼ばないので注意！)  
-* [gulp-plumber] \(Gulp 内でエラーを catch する)  
-
+* [gulp-plumber] \(Gulp 内でエラーを catch する)   
 * [gulp-ejs] \(EJS を HTML にコンパイル)  
 * [gulp-stylus] \(Stylus を CSS にコンパイル)  
 * [gulp-prettify] \(HTML の見栄えを良くする)  
@@ -63,9 +62,8 @@ release フォルダが出力されます。　　
 * [gulp-minify-html] \(HTML の minify)  
 * [gulp-minify-css] \(CSS の minify)  
 * [gulp-uglify] \(JavaScript の minify)  
-* [gulp-zopfli] \(テキストファイルを GZIP に、より小さく圧縮してくれる。zopfli 自体は Google が開発。かなり時間がかかる。中に含まれるバイナリが若干古い？)  
-
-* [imagemin-jpegoptim] \(JPEG の lossy 圧縮。)  
+* [gulp-zopfli] \(テキストファイルを GZIP に、より小さく圧縮してくれる。zopfli 自体は Google が開発。かなり時間がかかる。中に含まれるバイナリが若干古い？)   
+* [imagemin-jpegoptim] \(JPEG の lossy 圧縮)  
 * [imagemin-mozjpeg] \(JPEG の lossless 圧縮。mozjpeg 自体は Mozilla が開発)  
 * [imagemin-pngquant] \(PNG の lossy 圧縮。24bit PNG を透明度を残したまま 8bit PNG にする。インデックスカラー化。圧縮後 Photoshop で開けないので注意！)  
 * [imagemin-zopfli] \(PNG の lossless 圧縮。zopfli の PNG への応用)  
