@@ -1,5 +1,72 @@
 /*! Copyright (c) 2014 九州大学噴水企画'14 | MIT Lisence | http://git.io/JbFCbw */
 
+// tablet
+@media only screen and (min-width : 481px) and (max-width : 768px)
+
+	main
+		min-width 0
+		min-height 0
+	
+	#loading
+		transform translate(-50%, -50%) scale(0.6)
+		
+	.decoration:before, .decoration:after
+		width 40%
+	
+		// glide
+	.slider
+		height 80%
+
+	.slide
+		img
+			margin 0 5%
+			width 200px
+			transform translateY(-100%)
+			
+	.slider__nav
+		bottom 15px
+	
+	.slider__arrows-item
+		width 59px
+		height 100px
+	
+	.slider__arrows-item--left
+		left 0
+	
+	.slider__arrows-item--right
+		right 0
+
+	// header
+	#top, #introduction
+		width 90%
+		font-size 1.2em
+	
+	#skip
+		font-size 1.8em
+	
+	// section
+	#about, #information, #variety, #darkknight, #contact
+		> div
+			width 90%
+			font-size 1.2em
+
+	#darkknight
+		> div
+			> h2
+				>img
+					width 100%
+	
+
+	#poster, #special
+		> div
+			> p
+				height 20%
+				padding 0.7em 0 0 0
+
+	#contact
+		height 80%
+
+// phone
 @media only screen and (min-width : 320px) and (max-width : 480px)
 
 	main
@@ -15,7 +82,7 @@
 	
 	// glide
 	.slider
-		height 75%
+		height 80%
 
 	.slide
 		img
@@ -32,10 +99,10 @@
 		height 100px
 	
 	.slider__arrows-item--left
-		left 0
+		left -5px
 	
-	.slider__arrows-item--left
-		right 0
+	.slider__arrows-item--right
+		right -5px
 
 
 	// header
@@ -104,10 +171,12 @@
 	#poster, #special
 		> div
 			> p
-				height 25%
+				height 20%
 				font-size 0.8em
+				padding 0.7em 0 0 0
 	
 	#contact
+		height 80%
 		min-height 500px
 	
 	#mail
