@@ -86,7 +86,7 @@ function releaseCSS(release) {
 	function tempToRelease() {
 		if(release) {
 			gulp.src(src)
-				.pipe(minifyCSS())
+				.pipe(minifyCSS({noAdvanced: true}))
 				.pipe(concat("style.css"))
 				.pipe(gulp.dest("release/css"))
 				.pipe(zopfli())
