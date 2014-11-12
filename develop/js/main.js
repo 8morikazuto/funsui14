@@ -9,10 +9,11 @@
 		this.loaded = false;
 		this.mail = {};
 
-		this.isMobile = (/Android|iPhone|iPad|iPod|BlackBerry/i).test(window.navigator.userAgent || window.navigator.vendor || window.opera);
+		var nav = window.navigator.userAgent || window.navigator.vendor || window.opera;
+		this.isMobile = (/Android|iPhone|iPad|iPod|BlackBerry/i).test(nav);
 		this.isChrome = !!window.chrome;
 
-		this.isAndroid = (/Mozilla\/5.0/i).test(window.navigator.userAgent) && (/AppleWebKit/i).test(window.navigator.userAgent) && (/Android/i).test(window.navigator.userAgent) && !this.isChrome;
+		this.isAndroid = (/Android/i).test(nav) && (/Mobile/i).test(nav) && !(/Chrome/i).test(nav);
 
 		var _this = this;
 
@@ -82,7 +83,7 @@
 
 			setTimeout(function() {
 				_this.displayTop();
-				hideSkip();
+				_this.$skip.remove();
 			}, 500);
 
 		} else if(this.isMobile) {
@@ -164,15 +165,21 @@
 		function hideSkip() {
 			var $skip = _this.$skip;
 
-			if(Modernizr.csstransitions) {
-				$skip.addClass("hide");
-				$skip.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
-					$skip.addClass("end");
-				});
+			if(_this.isAndroid) {
+				$skip.addClass("end");
 			} else {
-				$skip.animate({opacity: 0}, 300, function() {
-					$skip.addClass("end");
-				});
+
+				if(Modernizr.csstransitions) {
+					$skip.addClass("hide");
+					$skip.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function() {
+						$skip.addClass("end");
+					});
+				} else {
+					$skip.animate({opacity: 0}, 300, function() {
+						$skip.addClass("end");
+					});
+				}
+
 			}
 
 		}
@@ -300,10 +307,14 @@
 		var _this = this;
 		setMainHeight();
 
-		if(this.isAndroid)
+		if(this.isAndroid) {
+			this.$video.remove();
+			this.$vcanvas.remove();
 			this.loadVImage();
-		else
+		} else {
+			this.$vimage.addClass("hide");
 			this.loadXJPEG();
+		}
 
 		this.$window.on("orientationchange", function() {
 			setMainHeight();
@@ -313,12 +324,11 @@
 		function setMainHeight() {
 			var height;
 			if(_this.isLandscape()){
-				_this.$html.addClass("landscape");
 				height = "availWidth" in screen ? screen.availWidth : screen.width;
 			} else {
-				_this.$html.removeClass("landscape");
 				height = "availHeight" in screen ? screen.availHeight : screen.height;
 			}
+			if(_this.isAndroid)	height /= devicePixelRatio;
 			_this.$main.height(height);
 		}
 	};
@@ -348,8 +358,7 @@
 			$fixbf.css('background-attachment', 'scroll');
 
 			// http://stackoverflow.com/questions/2637058/positions-fixed-doesnt-work-when-using-webkit-transform
-			if(this.isChrome && !this.isMobile) {
-
+			if(!this.isMobile) {
 				var $variety = $("#variety");
 				$variety.css("background-size", "120%");
 
