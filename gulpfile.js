@@ -234,15 +234,16 @@ gulp.task("watch", function() {
 /*
 gulp.task("jpeg", function() {
 	gulp.src("image/jpeg/**")
-		.pipe(jpegoptim({max : 70})())
+		.pipe(jpegoptim({max : 30})())
 		.pipe(mozjpeg()())
 		.pipe(gulp.dest("image/minjpeg"));
 });
-*/
+
+
 gulp.task("png", function() {
 	gulp.src("develop/embed/arrow.png")
 		.pipe(pngquant({speed : 1})())
 		.pipe(zopflipng({more : true})())
 		.pipe(gulp.dest("develop/embed/arrow2.png"));
 });
-
+*/

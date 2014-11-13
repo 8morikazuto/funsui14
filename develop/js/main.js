@@ -295,7 +295,8 @@
 				_this.loaded = true;
 			});
 		}else if(this.isMobile) {
-			this.xjpeg.on("load", function() {
+			var xjpeg = this.xjpeg;
+			xjpeg.on("load", function() {
 				_this.loaded = true;
 			});
 			if(this.xjpeg.loaded)
