@@ -298,6 +298,8 @@
 			this.xjpeg.on("load", function() {
 				_this.loaded = true;
 			});
+			if(this.xjpeg.loaded)
+				this.loaded = true;
 		} else {
 			this.loaded = true;
 		}
