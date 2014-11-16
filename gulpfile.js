@@ -58,7 +58,7 @@ function releaseCSS(release) {
 	var num = 0, max = 2;
 
 	for(var i=0, l=src.length; i<l; ++i) {
-		src[i] = "temp/" + src[i];
+		src[i] = ".temp/" + src[i];
 	}
 
 	gulp.src("develop/stylus/*.styl")
@@ -75,11 +75,11 @@ function releaseCSS(release) {
 			'Safari >= 6'
 		])).pipe(csscomb())
 		.pipe(base64())
-		.pipe(gulp.dest("temp"))
+		.pipe(gulp.dest(".temp"))
 		.on("end", onEnd);
 
 	gulp.src(["develop/stylus/normalize.css", "develop/stylus/sweet-alert.css"])
-		.pipe(gulp.dest("temp"), onEnd)
+		.pipe(gulp.dest(".temp"), onEnd)
 		.on("end", onEnd);
 
 
@@ -93,13 +93,13 @@ function releaseCSS(release) {
 				.pipe(gulp.dest("release/css"))
 				.on("end", clearTemp);
 		} else {
-			gulp.src("temp/**")
+			gulp.src(".temp/**")
 				.pipe(gulp.dest("release/css"))
 				.on("end", clearTemp);
 		}
 
 		function clearTemp() {
-			gulp.src("temp", {read: false})
+			gulp.src(".temp", {read: false})
 				.pipe(clean());
 		}
 

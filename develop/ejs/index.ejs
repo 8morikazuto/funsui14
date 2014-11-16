@@ -100,14 +100,28 @@
 			</div>
 		</section>
 
-		<section id="information">
-			<div>
-				<div class="decoration"></div>
-				<h2>公演情報</h2>
+		<section id="information" class="fixbf">
+			<h2>本公演情報</h2>
+			<p>
 				<%= information[0] %>
 				<% for(var i=1; i<information.length; ++i) { %>
 					<br><%= information[i] %>
 				<% } %>
+			</p>
+			<div>
+				<img src="img/title.png" srcset="img/title@2x.png 2x" alt="DEAR HEROES">
+				<img src="img/map.png" srcset="img/map@2x.png 2x" alt="DEAR HEROES">
+				<% for(var i=0; i<details.length; ++i) { %>
+				<p>
+					<% for(var j=0; j<details[i].length; ++j) { %>
+						<% if(j !== 0) { %>
+							<br>
+						<% } %>
+						<%= details[i][j] %>
+					<% } %>
+				</p>
+				<% } %>
+				<a href="../"><img src="img/festival.png" srcset="img/festival@2x.png 2x" alt="DEAR HEROES"></a>
 			</div>
 		</section>
 

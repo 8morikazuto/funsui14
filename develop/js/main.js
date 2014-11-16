@@ -362,8 +362,9 @@
 
 			// http://stackoverflow.com/questions/2637058/positions-fixed-doesnt-work-when-using-webkit-transform
 			if(!this.isMobile) {
-				var $variety = $("#variety");
+				var $variety = $("#variety"), $information = $("#information");
 				$variety.css("background-size", "120%");
+				$information.css("background-size", "110%");
 
 				this.$window.on("scroll", function(e) {
 
