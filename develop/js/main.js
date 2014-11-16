@@ -282,7 +282,8 @@
 		$.get(uri, request).done(function(val) {
 			var snippet = val.items[0].snippet;
 			var img = snippet.thumbnails.high;
-			$DKN.attr("src", img.url);
+
+			$DKN.css("backgroundImage", "url("+img.url+")");
 		});
 
 	};
@@ -362,9 +363,12 @@
 
 			// http://stackoverflow.com/questions/2637058/positions-fixed-doesnt-work-when-using-webkit-transform
 			if(!this.isMobile) {
-				var $variety = $("#variety"), $information = $("#information");
+				var $variety = $("#variety"), $information = $("#information"), $poster = $("#poster"), $special = $("#special");
+
 				$variety.css("background-size", "120%");
 				$information.css("background-size", "110%");
+				$poster.css("background-size", "120%");
+				$special.css("background-size", "120%");
 
 				this.$window.on("scroll", function(e) {
 

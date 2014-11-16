@@ -183,7 +183,6 @@ main.open
 // header
 header
 	position relative
-	background url("../embed/overlay.gif") fixed
 	size(200%)
 
 	> video
@@ -195,6 +194,13 @@ header
 		transform translate3d(-50%, -50%, 0)
 		z-index -10
 	
+#overlay
+	position fixed
+	background url("../embed/overlay.gif")
+	width 100%
+	height 100%
+	z-index -5
+
 #vimage
 	position fixed
 	top 50%
@@ -374,9 +380,15 @@ h1
 		> div
 			margin 1em 0 0 0
 			font-size 1.4em
-
-#DKNthumb
-	width 240px
+			
+			> a
+				display block
+				width 240px
+				height 135px
+				margin 0 auto
+				background-image url("../img/thumb/DKN.png")
+				background-size 100%
+				background-position-y -22.5px
 
 
 // poster, special
