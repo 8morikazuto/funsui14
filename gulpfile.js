@@ -236,9 +236,11 @@ gulp.task("watch", function() {
 });
 
 gulp.task("cache", function() {
-	gulp.src(["release/**", "!release/*", "!release/img/!(background*)", "!release/video/*"])
+	gulp.src(["release/**", "!release/*", "!release/img/poster*", "!release/img/wall*", "!release/video/*"])
 		.pipe(manifest({
+		timestamp: false,
 		hash: true,
+		preferOnline: true,
 		network: ['http://*', '*'],
 		filename: 'funsui.appcache',
 		exclude: 'funsui.appcache'
