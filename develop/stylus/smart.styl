@@ -140,37 +140,6 @@
 		min-height 380px
 		background-position-x 95%
 
-	#information
-		height 180%
-		min-height 900px
-		
-		> h2
-			width 90%
-		
-		> h2:before, h2:after
-			width 30%
-		
-		> p
-			width 90%
-			font-size 0.8em
-			margin-top 2em
-		
-		> div
-			width 100%
-			
-			> p
-				width 17.5em
-				font-size 0.8em
-
-			img
-				width 90%
-			
-			.title
-				width 100%
-			
-			.map
-				width 80%
-
 	#variety
 		min-height 730px
 		height 130%
@@ -205,7 +174,42 @@
 			left 25%
 			> img:nth-child(2)
 				transform translate(-18%, -10%)
-				max-width 240px
+				max-width 210px
+
+	#information
+		height 220%
+		min-height 900px
+		
+		> h2
+			width 90%
+			top 3%
+		
+		> h2:before, h2:after
+			width 27%
+		
+		> p
+			width 90%
+			font-size 0.8em
+			margin-top 2em
+			line-height 1.8em
+			top 20%
+		
+		> div
+			width 100%
+			top 65%
+			
+			> p
+				width 17.5em
+				font-size 1em
+
+			img
+				width 90%
+			
+			.title
+				width 100%
+			
+			.map
+				width 80%
 			
 
 	#darkknight
@@ -238,3 +242,14 @@
 	footer
 		font-size 0.8em
 		height 15%
+
+// iPhone6		
+@media screen and (min-width: 375px) and (max-width: 500px)
+
+	#information
+		height 200%
+		
+		> h2
+			top 6%
+		
+	
