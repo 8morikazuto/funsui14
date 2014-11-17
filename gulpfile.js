@@ -35,6 +35,9 @@ var mozjpeg = require("imagemin-mozjpeg");
 var pngquant = require("imagemin-pngquant");
 var zopflipng = require("imagemin-zopfli");
 
+// manifest
+var manifest = require("gulp-manifest");
+
 
 function releaseHTML(release) {
 	var options = JSON.parse(fs.readFileSync("./develop/ejs/index.json", "utf8"));
@@ -230,6 +233,18 @@ gulp.task("watch", function() {
 	gulp.watch("develop/php/*.php", function() {
 		copyPHP();
 	});
+});
+
+gulp.task("cache", function() {
+	gulp.src(["release/**", "!release/*", "!release/img/!(background*)", "!release/video/*"])
+		.pipe(manifest({
+		hash: true,
+		network: ['http://*', '*'],
+		filename: 'funsui.appcache',
+		exclude: 'funsui.appcache'
+		}))
+		.pipe(gulp.dest("release"));
+
 });
 
 /*

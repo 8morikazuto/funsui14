@@ -17,5 +17,7 @@ AddType "text/css" .gz
 </files>
 AddEncoding x-gzip .gz
 
+AddType text/cache-manifest .appcache
+
 MultiViewsMatch Handlers
 AddDefaultCharset UTF-8
