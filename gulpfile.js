@@ -6,6 +6,7 @@ var concat = require("gulp-concat");
 var clean = require("gulp-clean");
 var gulpif = require("gulp-if");
 var plumber = require("gulp-plumber");
+var notify = require("gulp-notify");
 
 // template, preprocessor
 var ejs = require("gulp-ejs");
@@ -44,7 +45,7 @@ function releaseHTML(release) {
 	}
 	
 	gulp.src("develop/ejs/index.ejs")
-		.pipe(plumber())
+		.pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
 		.pipe(ejs(options))
 		.pipe(gulpif(release, minifyHTML(), prettify()))
 		.pipe(gulp.dest("release"))
@@ -62,7 +63,7 @@ function releaseCSS(release) {
 	}
 
 	gulp.src("develop/stylus/*.styl")
-		.pipe(plumber())
+		.pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
 		.pipe(stylus())
 		.pipe(prefix([
 			'Android 2.3',
@@ -122,14 +123,14 @@ function releaseJS(release) {
 	}
 
 	gulp.src("develop/js/loading.js")
-		.pipe(plumber())
+		.pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
 		.pipe(gulpif(release, uglify({preserveComments:"some"})))
 		.pipe(gulp.dest("release/js"))
 		.pipe(gulpif(release, zopfli()))
 		.pipe(gulpif(release, gulp.dest("release/js")));
 
 	gulp.src(src)
-		.pipe(plumber())
+		.pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
 		.pipe(gulpif(release, uglify({preserveComments:"some"})))
 		.pipe(gulpif(release, concat("build.js")))
 		.pipe(gulp.dest("release/js"))

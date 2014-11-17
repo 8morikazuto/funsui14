@@ -30,10 +30,7 @@
 	<% } %>
 
 <script src="//typesquare.com/accessor/script/typesquare.js?Kx3pTJNYFhs%3D"></script>
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-36723060-5','auto');ga('send','pageview');
-</script>
-
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-36723060-5','auto');ga('send','pageview');</script>
 </head>
 <body>
 	<div id="load">
@@ -111,8 +108,12 @@
 				<% } %>
 			</p>
 			<div>
-				<img src="img/title.png" srcset="img/title@2x.png 2x" alt="DEAR HEROES">
-				<img src="img/map.png" srcset="img/map@2x.png 2x" alt="DEAR HEROES">
+				<img class="title" src="img/title.png" srcset="img/title@2x.png 2x" alt="DEAR HEROES">
+
+				<img src="img/introduction1.png" srcset="img/introduction1@2x.png 2x" alt="DEAR HEROES">
+				<img src="img/introduction2.png" srcset="img/introduction2@2x.png 2x" alt="DEAR HEROES">
+
+				<img class="map" src="img/map.png" srcset="img/map@2x.png 2x" alt="九州大学大橋キャンパス">
 				<% for(var i=0; i<details.length; ++i) { %>
 				<p>
 					<% for(var j=0; j<details[i].length; ++j) { %>
@@ -124,6 +125,7 @@
 				</p>
 				<% } %>
 				<a href="../"><img src="img/festival.png" srcset="img/festival@2x.png 2x" alt="DEAR HEROES"></a>
+				<img src="img/wait.png" srcset="img/wait@2x.png 2x" alt="DEAR HEROES">
 			</div>
 		</section>
 

@@ -13,6 +13,7 @@
 		this.isMobile = (/Android|iPhone|iPad|iPod|BlackBerry/i).test(nav);
 		this.isChrome = !!window.chrome;
 
+		this.isiOS = (/iPhone|iPad/i).test(nav);
 		this.isAndroid = (/Android/i).test(nav) && (/Mobile/i).test(nav) && !(/Chrome/i).test(nav);
 
 		var _this = this;

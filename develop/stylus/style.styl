@@ -295,6 +295,7 @@ h1
 	position relative
 	background url("../img/background002.jpg") black center fixed
 	background-size cover
+	overflow hidden
 	size(200%)
 
 	> div
@@ -334,27 +335,49 @@ h1
 	position relative
 	background url("../img/background005.jpg") black center fixed
 	background-size cover
-	size(250%)
+	size(300%)
 	
 	> h2
 		width 600px
 		color white
 		text-align center
 		center(5%)
+		
+	> h2:before,h2:after
+		content ""
+		width 220px
+		height 3px
+		position absolute
+		top 50%
+		transform translateY(-50%)
+		display block
+		background white
+	
+	> h2:before
+		left 0
+
+	> h2:after
+		right 0
 
 	> p
 		width 600px
 		color white
 		text-align left
 		font-size 1.4em
-		center(20%)
+		center(17.5%)
 	
 	> div
 		width 800px
 		color white
 		text-align center
 		font-size 1.4em
-		center(70%)
+		center(65%)
+		
+		> .title
+			margin 0 0 1.5em 0
+		
+		> .map
+			margin 3.5em 0 0 0
 		
 		> p
 			width 400px

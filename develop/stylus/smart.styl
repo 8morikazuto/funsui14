@@ -45,10 +45,27 @@
 		font-size 1.8em
 	
 	// section
-	#about, #information, #variety, #darkknight, #contact
+	#about, #information, #variety, #darkknight, #contact, #information
 		> div
 			width 90%
 			font-size 1.2em
+	
+	#information
+		> h2
+			width 90%
+			
+		> div
+			width 100%
+			font-size 1.2em
+			
+			img
+				width 90%
+			
+			.title
+				width 100%
+			
+			.map
+				width 80%
 
 	#darkknight
 		> div
@@ -114,7 +131,7 @@
 		font-size 1.2em
 	
 	// section
-	#about, #information, #variety, #darkknight, #contact
+	#about, #information, #variety, #darkknight, #contact, #information
 		> div
 			width 90%
 			font-size 0.8em
@@ -124,7 +141,35 @@
 		background-position-x 95%
 
 	#information
-		min-height 230px
+		height 180%
+		min-height 900px
+		
+		> h2
+			width 90%
+		
+		> h2:before, h2:after
+			width 30%
+		
+		> p
+			width 90%
+			font-size 0.8em
+			margin-top 2em
+		
+		> div
+			width 100%
+			
+			> p
+				width 17.5em
+				font-size 0.8em
+
+			img
+				width 90%
+			
+			.title
+				width 100%
+			
+			.map
+				width 80%
 
 	#variety
 		min-height 730px
@@ -141,7 +186,6 @@
 				
 			> img:nth-child(2)
 				width 85%
-				max-width 195px
 			
 			> p
 				font-size 1.0em
@@ -153,13 +197,15 @@
 		.hogee
 			top 40%
 			> img:nth-child(2)
-				transform translate(-143%, -13%)
+				transform translate(-151%, -13%)
+				max-width 195px
 		
 		.head
 			top 72%
 			left 25%
 			> img:nth-child(2)
-				transform translate(-20%, -5%)
+				transform translate(-18%, -10%)
+				max-width 240px
 			
 
 	#darkknight
